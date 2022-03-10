@@ -18,10 +18,14 @@ body {
 
 h1 {
     text-align: center;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    margin-top: 45px;
 }
 
 .container .elemento label{
     color: #012e33;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
 }
 
 .container .elemento input{
@@ -31,13 +35,48 @@ h1 {
     border: none;
     border-bottom: 1px solid #012e33;
     margin-bottom: 30px;
-
 }
 
 .container .elemento input[type = "submit"]{
     border: none;
+    border-radius: 50px;
     letter-spacing: 5px;
     text-transform: uppercase;
     margin-top: 15px;
-    cursor: pointer;    
+    cursor: pointer;
+    padding: 11px;
+}
+
+#Login_Ingresar {
+    height: 65px;
+    margin-bottom: 20px;
+}
+
+.container .elemento input[type = "submit"]:hover{
+    background-color: #aed4dd;
+    padding: 10px;
+    border: 1px solid;
+    border-color: #012e33;
+}
+
+.Login_Botones_Inferior {
+    margin-bottom: 10px;
+}
+
+.Login_Botones_Inferior input[type = "button"], .Login_Botones_Inferior input[type = "reset"]{
+    border: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-top: 5px;
+    
+    cursor: pointer; 
+}
+
+#Boton_Login_RecuperarContrasenia {
+    float: right;
+}
+
+#Boton_Login_Limpiar {
+    float: right;
 }
