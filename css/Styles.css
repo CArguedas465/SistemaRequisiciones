@@ -44,6 +44,28 @@ h1 {
     border-color: green;
 }
 
+#ingresar{
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;
+    padding: 11px;
+}
+
+#ingresar:hover{
+    background-color: #aed4dd;
+    padding: 10px;
+    border: 1px solid;
+    border-color: #012e33;
+}
+
+#Login_Ingresar {
+    height: 65px;
+    margin-bottom: 20px;
+}
+/*
 .container .elemento input[type = "submit"]{
     border: none;
     border-radius: 50px;
@@ -54,18 +76,13 @@ h1 {
     padding: 11px;
 }
 
-#Login_Ingresar {
-    height: 65px;
-    margin-bottom: 20px;
-}
-
 .container .elemento input[type = "submit"]:hover{
     background-color: #aed4dd;
     padding: 10px;
     border: 1px solid;
     border-color: #012e33;
 }
-
+*/
 .Login_Botones_Inferior {
     margin-bottom: 10px;
 }
