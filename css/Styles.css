@@ -30,11 +30,18 @@ h1 {
 
 .container .elemento input{
     width: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 10px 0px;
     background: transparent;
     border: none;
     border-bottom: 1px solid #012e33;
     margin-bottom: 30px;
+    transition: border-color 1s ease-out 100ms;
+}
+
+.container .elemento input:focus{
+    outline: none;
+    border-color: green;
 }
 
 .container .elemento input[type = "submit"]{
@@ -69,7 +76,6 @@ h1 {
     text-transform: uppercase;
     font-size: 10px;
     margin-top: 5px;
-    
     cursor: pointer; 
 }
 
