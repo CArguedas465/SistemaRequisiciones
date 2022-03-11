@@ -9,11 +9,8 @@ function validacion(){
     else {
         attempt = attempt-1;
         alert("Usted tiene "+attempt+" restantes");
+        if(attempt==0){
+            
+        }
     }
-    return attempt;
-}
-
-function llamada(){
-    attempt = validacion();
-
 }
