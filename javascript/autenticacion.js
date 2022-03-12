@@ -47,6 +47,7 @@ function recuperacionContrasenia(){
     if (attempt<0){
         alert("Usted ha sido bloqueado del sistema. Comuníquese con su administrador.")
                 attempt = -1;
-    }
-    alert("Sistema de recuperación de contraseña");
+    } else {
+        alert("Sistema de recuperación de contraseña");
+    }  
 }
