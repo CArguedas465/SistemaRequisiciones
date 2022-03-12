@@ -1,3 +1,7 @@
+/*SUGERENCIA: Se puede similar la base de datos a partir de un archivo JSON.*/
+/*Probablemente vamos a tener que trabajar con APIs para trabajar con el back end. Para probar el API, probablemente
+vamos a tener que usar POSTMAN. Investigar.*/ 
+/*Para la otra semana, traer la Base de Datos hecha. Mínimo tercera forma normal.*/ 
 var attempt = 3;
 
 function validacion(){
@@ -8,6 +12,7 @@ function validacion(){
     if (usuario=="" || contrasenna==""){
         alert("No puede dejar espacios en blanco");
     } else {
+        /*Claves se encriptan en la base de datos; NUNCA DEBEN SER ACCESIBLES EN EL FRONT END. SEGURIDAD.*/ 
         if(usuario=="camiargue"&&contrasenna=="admin01"){
             alert("Ha accedido al sistema");
             document.getElementById("usuario").value = "";
@@ -35,6 +40,7 @@ function validacion(){
                 alert("Usted ha sido bloqueado del sistema. Comuníquese con su administrador.")
                 attempt = -1;
             } else {
+                /*Modificar alerta para que no diga la cantidad de intentos restantes.*/
                 alert("Credenciales incorrectas. Usted tiene "+attempt+" intentos restantes");
                 document.getElementById("usuario").value = "";
                 document.getElementById("password").value = "";
