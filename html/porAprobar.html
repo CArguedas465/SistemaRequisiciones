@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por Aprobar</title>
+    <link rel="stylesheet" href="../css/StyleMain.css">
+</head>
+<body>
+    <nav>
+        <div id="imagenUsuario">
+            <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
+        </div>
+        <p>Bienvenido</p>
+        <p id="nombreEmpleado">*nombreDelEmpleado*</p>
+        <a href="paginaPrincipal.html">Página Principal</a>
+        <a href="nuevaRequisicion.html">Nueva Requisición</a>
+        <a href="admin.html">Administración</a>
+        <a href="reportes.html">Reportes</a>
+        <a href="porAprobar.html">Por Aprobar</a>
+        <div id="botonCorreo">
+            <button id="opcionesCorreoElectronico" onclick="emergente_Correo_Abrir()">Opciones de E-mail</button>
+        </div>
+    </nav>
+    <section>
+        <h1>Por Aprobar</h1>
+        <div id="modalCorreo" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_Correo_Cerrar()">&times;</span>
+                <h2>Cambiar correo electrónico</h2>
+                <h3>Nuevo correo:</h3>
+                <input type="text" id="nuevoCorreoElectronico">
+                <p>*La operación de cambio de correo es final. Favor asegurarse 
+                    del cambio antes de seleccionar "Cambiar correo".</p>
+                <div>
+                    <button>Cambiar Correo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script src="../javascript/ventanaEmergente.js"></script>

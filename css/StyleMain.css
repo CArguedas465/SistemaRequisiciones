@@ -1,0 +1,197 @@
+html{
+    height: 100%;
+    margin: 0px;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+/*Estilo del título de cada sección*/
+h1{
+    margin: 0px;
+    text-align: center;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    background-color: #1224CA;
+    color: #fff;
+    padding: 5px;
+}
+
+/*Estilo barra de navegación lateral*/
+nav{
+    width: 19.98%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    background: linear-gradient(#1224CA, #087058);
+    overflow-wrap: normal;
+}
+
+/*Estilo de los elementos de la barra de navegación lateral*/
+nav a, nav button {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0px;
+    padding: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in 50ms;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+/*Cuando se pasa por encima de un elemento de la barra de navegación, su fondo se vuelve de color midnightblue.*/
+nav a:hover{
+    background-color: midnightblue;
+}
+
+/*Estilo de Bienvenida del empleado, barra lateral*/
+nav p{
+    color: #fff;
+    margin: 10px;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    letter-spacing: 1px;
+}
+
+/*Estilo de nombre del empleado, barra lateral*/
+nav #nombreEmpleado{
+    margin: 0px 0px 30px 0px;
+}
+
+/*Estilo de la sección que contiene el contenido de cada página.*/
+section{
+    float: left;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(#F9F9F9, #539A9F);
+    display: inline;
+    position: relative;
+}
+
+/*Estilos referente a la imagen del usuario*/
+#imagenUsuario{
+    margin: 20px;
+}
+
+#imagenUsuario img{
+    border-radius: 100px;
+}
+
+/*Estilo específico para el botón de opciones de correo electrónico*/
+#opcionesCorreoElectronico{
+    background-color: transparent;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+    font-weight: 100;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    border: none;
+    transition: color 0.5s ease-in;
+    font-weight: 250;
+}
+
+/*Estilo específico para el botón de opciones de correo electrónico al momento de hacer "hover"*/
+#opcionesCorreoElectronico:hover{
+    color: black;
+    cursor: pointer;
+}
+
+/*---ESTILO GENERAL PARA VENTANAS EMERGENTES. "MODAL" hace que toda el área de la página se opaque. Modal-content le 
+aplica estilos a la ventana que se levante como emergente. ".closeButton" es el estilo aplicado al botón para cerrar
+la ventana modal, y sus variantes con pseudoclases cambian su estilo cuando está en enfoque o cuando se le hace hover. 
+Por último, se adjuntan animaciones CSS para cuando sale la ventana emergente. Todo lo que tiene que ver con los 
+estilos de las ventanas modales se encierra con guiones.*/
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0; top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(255,255,255,0.4);
+    animation-name: modalOpen;
+    animation-duration: 0.5s;
+}
+
+.modal-content{
+    background-color: #f4f4f4;
+    margin: 10% auto;
+    padding: 20px;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    border-radius: 10px;
+    animation-name: modalContentOpen; 
+    animation-duration: 0.5s;
+}
+
+.closeButton{
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    transition: color 0.2s ease-in;
+}
+
+.closeButton:hover, .closeButton:focus{
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalContentOpen{
+    from{
+        opacity: 0;
+    } 
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalOpen{
+    from{
+        background-color: rgba(255,255,255,0);
+    } 
+    to {
+        background-color: rgba(255,255,255,0.4);
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+
+
+/*Estilos específicos para los elementos de la ventana emergente de opciones de correo electrónico.*/
+
+#modalCorreo .modal-content{
+    width: 40%;
+    text-align: center;
+}
+
+#modalCorreo .modal-content input{
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid gray;
+} 
+
+#modalCorreo .modal-content p{
+    color: red;
+    font-weight: bold;
+} 
+
+#modalCorreo .modal-content button{
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+} 
+
+#modalCorreo .modal-content div{
+    text-align: right;
+}
