@@ -1,0 +1,17 @@
+h2 {
+    margin: 20px;
+}
+
+table {
+    background-color: #b4b4b4;
+}
+
+tbody tr{
+    background-color: #b4b4b4;
+    transition: background-color 0.2s ease-in;
+}
+
+tbody tr:hover{
+    color: rgb(25, 90, 5);
+    cursor: pointer;
+}

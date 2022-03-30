@@ -1,4 +1,4 @@
-window.addEventListener('click', emergente_Correo_ClickExterno)
+/*Opciones de correo*/
 
 function emergente_Correo_Abrir(){
     var modal = document.getElementById('modalCorreo');
