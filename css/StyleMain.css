@@ -19,6 +19,21 @@ h1 {
     padding: 5px;
 }
 
+h1 span {
+    float: right;
+    font-size: small;
+    vertical-align: middle;
+    border-radius: 10px;
+    background-color: #000;
+    width: 85px;
+    transition: background-color 0.2s ease-in;
+}
+
+h1 span:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
 /*Estilo barra de navegación lateral*/
 nav{
     width: 19.98%;

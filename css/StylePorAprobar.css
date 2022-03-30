@@ -16,8 +16,7 @@ tbody tr{
 }
 
 tbody tr:hover{
-    background-color: midnightblue;
-    color: white;
+    color: green;
     cursor: pointer;
 }
 
@@ -47,4 +46,10 @@ form input[disabled], textarea[disabled]{
 
 form textarea, textarea[disabled]{
     text-align: left;
+}
+
+.scrollableTableDiv{
+    height: 90%;
+    overflow-y: scroll;
+    background-color: #b4b4b4;
 }

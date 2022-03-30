@@ -29,56 +29,15 @@
         </div>
     </nav>
     <section>
-        <h1 class="h3">Administración</h1>
+        <h1 class="h3">
+            Administración
+            <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
+        </h1>
 
-        <h2 class="h4">Empleados activos</h2>
-        <table class="table table-borderless" id="tablaEmpleadosActivos">
-            
-            <thead>
-                <tr>
-                    <th>IdEmpleado</th>
-                    <th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                    <th>Correo Electrónico</th>
-                    <th>Rol</th>
-                    <th>IdUsuario</th>
-                    <th>Jefe</th>
-                </tr>
-            </thead>
-            <tbody onclick="evidenciarSeleccionActivos()">
-                <tr>
-                    <td>157488</td>
-                    <td>116580465</td>
-                    <td>Carlos</td>
-                    <td>Arguedas</td>
-                    <td>Dávila</td>
-                    <td>carlos.arguedas.96@gmail.com</td>
-                    <td>Empleado principiante</td>
-                    <td>carguedasd465</td>
-                    <td>123456</td>
-                </tr>
-                <tr>
-                    <td>123456</td>
-                    <td>114578963</td>
-                    <td>Nicolás</td>
-                    <td>Beisswenger</td>
-                    <td>Leiva</td>
-                    <td>nbeisswengerl963@ulacit.ed.cr</td>
-                    <td>Jefe Aprobador</td>
-                    <td>nbeisswengerl963</td>
-                    <td>****</td>
-                </tr>
-                
-            </tbody>
-        </table>
-        <div id="divBotonDeshabilitarEmpleado">
-            <button class="btn btn-danger" onclick="emergente_DeshabilitarEmpleado_Confirmacion_Abrir()">Deshabilitar Empleado</button>
-        </div>
-        <h2 class="h4">Empleados inactivos</h2>
-        <table class="table table-borderless" id="tablaEmpleadosInactivos">
-            <thead>
+        <h2 class="h2">Empleados activos</h2>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaEmpleadosActivos">
+                <thead>
                     <tr>
                         <th>IdEmpleado</th>
                         <th>Cédula</th>
@@ -90,32 +49,79 @@
                         <th>IdUsuario</th>
                         <th>Jefe</th>
                     </tr>
-            </thead>
-            <tbody onclick="evidenciarSeleccionInactivos()">
-                <tr>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                </tr>
-                <tr>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 1</td>
-                </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody onclick="evidenciarSeleccionActivos()">
+                    <tr>
+                        <td>157488</td>
+                        <td>116580465</td>
+                        <td>Carlos</td>
+                        <td>Arguedas</td>
+                        <td>Dávila</td>
+                        <td>carlos.arguedas.96@gmail.com</td>
+                        <td>Empleado principiante</td>
+                        <td>carguedasd465</td>
+                        <td>123456</td>
+                    </tr>
+                    <tr>
+                        <td>123456</td>
+                        <td>114578963</td>
+                        <td>Nicolás</td>
+                        <td>Beisswenger</td>
+                        <td>Leiva</td>
+                        <td>nbeisswengerl963@ulacit.ed.cr</td>
+                        <td>Jefe Aprobador</td>
+                        <td>nbeisswengerl963</td>
+                        <td>****</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div id="divBotonDeshabilitarEmpleado">
+            <button class="btn btn-danger" onclick="emergente_DeshabilitarEmpleado_Confirmacion_Abrir()">Deshabilitar Empleado</button>
+        </div>
+        <h2 class="h2">Empleados inactivos</h2>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaEmpleadosInactivos">
+                <thead>
+                        <tr>
+                            <th>IdEmpleado</th>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Correo Electrónico</th>
+                            <th>Rol</th>
+                            <th>IdUsuario</th>
+                            <th>Jefe</th>
+                        </tr>
+                </thead>
+                <tbody onclick="evidenciarSeleccionInactivos()">
+                    <tr>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                    </tr>
+                    <tr>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div id="divBotonHabilitarEmpleado">
             <button class="btn btn-warning" onclick="emergente_HabilitarEmpleado_Confirmacion_Abrir()">Habilitar Empleado</button>
         </div>
@@ -232,6 +238,19 @@
                     del cambio antes de seleccionar "Cambiar correo".</p>
                 <div>
                     <button>Cambiar Correo</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Ventana modal cerrar sesión-->
+        <div id="modalCerrarSesion" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_CerrarSesion_Cerrar()">&times;</span>
+                <h2>Cerrar Sesión</h2>
+                <p>¿Seguro que desea cerrar sesión?</p>
+                <div style="text-align: right;">
+                    <a href="login.html" class="btn btn-success">Aceptar</a>
+                    <button onclick="emergente_CerrarSesion_Cerrar()" class="btn btn-secondary">Volver</button>
                 </div>
             </div>
         </div>

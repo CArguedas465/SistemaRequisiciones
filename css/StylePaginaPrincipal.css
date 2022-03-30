@@ -1,9 +1,19 @@
 h2 {
-    margin: 20px;
+    margin: 30px 0px 30px 15px;
 }
 
 table {
     background-color: #b4b4b4;
+}
+
+.scrollableTableDiv{
+    height: 130px;
+    overflow-y: scroll;
+    background-color: #b4b4b4;
+}
+
+.scrollableDivBusqueda{
+    height: 230px;
 }
 
 tbody tr{
@@ -14,4 +24,30 @@ tbody tr{
 tbody tr:hover{
     color: rgb(25, 90, 5);
     cursor: pointer;
+}
+
+textarea{
+    border-radius: 10px;
+    border: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+    transition: border-color 0.5s ease-in;
+}
+
+#modalBusquedaEspecifica form{
+    margin: 15px;
+}
+
+#modalBusquedaEspecifica form input[type='text']{
+    width: 60%;
+    margin: 15px;
+}
+
+#modalBusquedaEspecifica form select{
+    width: 17%;
+}
+
+#modalBusquedaEspecifica form input[type='button']{
+    float: right;
+    width: 150px;
 }

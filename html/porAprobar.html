@@ -29,42 +29,46 @@
         </div>
     </nav>
     <section>
-        <h1 class="h3">Por Aprobar</h1>
-
-        <table class="table table-borderless" id="tablaRequisiciones">
-            <thead>
-                <th>IdRequisición</th>
-                <th>Fecha Solicitud</th>
-                <th>Producto</th>
-                <th>Costo</th>
-                <th>Estado</th>
-                <th>Imagen</th>
-                <th>IdEmpleado</th>
-                <th>Detalle</th>
-            </thead>
-            <tbody ondblclick="leerFila()">
-                <tr>
-                    <td>126348</td>
-                    <td>3/29/2022</td>
-                    <td>Computadora para trabajo</td>
-                    <td>1000000</td>
-                    <td>Enviada</td>
-                    <td>***</td>
-                    <td>1585652</td>
-                    <td>Detalle</td>
-                </tr>
-                <tr>
-                    <td>54198515</td>
-                    <td>3/29/2022</td>
-                    <td>Helloo</td>
-                    <td>500000</td>
-                    <td>En revisión</td>
-                    <td>***</td>
-                    <td>1585652</td>
-                    <td>Detalle</td>
-                </tr>
-            </tbody>
-        </table>
+        <h1 class="h3">
+            Por Aprobar
+            <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
+        </h1>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaRequisiciones">
+                <thead>
+                    <th>IdRequisición</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Estado</th>
+                    <th>Imagen</th>
+                    <th>IdEmpleado</th>
+                    <th>Detalle</th>
+                </thead>
+                <tbody ondblclick="leerFila()">
+                    <tr>
+                        <td>126348</td>
+                        <td>3/29/2022</td>
+                        <td>Computadora para trabajo</td>
+                        <td>1000000</td>
+                        <td>Enviada</td>
+                        <td>***</td>
+                        <td>1585652</td>
+                        <td>Detalle</td>
+                    </tr>
+                    <tr>
+                        <td>54198515</td>
+                        <td>3/29/2022</td>
+                        <td>Helloo</td>
+                        <td>500000</td>
+                        <td>En revisión</td>
+                        <td>***</td>
+                        <td>1585652</td>
+                        <td>Detalle</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!--Ventanas modales-->
 
@@ -171,6 +175,19 @@
                     del cambio antes de seleccionar "Cambiar correo".</p>
                 <div>
                     <button>Cambiar Correo</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Ventana modal cerrar sesión-->
+        <div id="modalCerrarSesion" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_CerrarSesion_Cerrar()">&times;</span>
+                <h2>Cerrar Sesión</h2>
+                <p>¿Seguro que desea cerrar sesión?</p>
+                <div style="text-align: right;">
+                    <a href="login.html" class="btn btn-success">Aceptar</a>
+                    <button onclick="emergente_CerrarSesion_Cerrar()" class="btn btn-secondary">Volver</button>
                 </div>
             </div>
         </div>

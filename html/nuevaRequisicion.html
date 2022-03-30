@@ -29,7 +29,10 @@
         </div>
     </nav>
     <section>
-        <h1 class="h3">Nueva Requisición</h1>
+        <h1 class="h3">
+            Nueva Requisición
+            <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
+        </h1>
         
         <h2>Introducir la información requerida</h2>
         <form>
@@ -91,6 +94,19 @@
                     del cambio antes de seleccionar "Cambiar correo".</p>
                 <div>
                     <button>Cambiar Correo</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Ventana modal cerrar sesión-->
+        <div id="modalCerrarSesion" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_CerrarSesion_Cerrar()">&times;</span>
+                <h2>Cerrar Sesión</h2>
+                <p>¿Seguro que desea cerrar sesión?</p>
+                <div style="text-align: right;">
+                    <a href="login.html" class="btn btn-success">Aceptar</a>
+                    <button onclick="emergente_CerrarSesion_Cerrar()" class="btn btn-secondary">Volver</button>
                 </div>
             </div>
         </div>

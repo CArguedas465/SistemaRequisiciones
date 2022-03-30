@@ -53,3 +53,9 @@ form input[id='cedula']{
 .modal-content div {
     text-align: right;
 }
+
+.scrollableTableDiv{
+    height: 185px;
+    overflow-y: scroll;
+    background-color: #b4b4b4;
+}

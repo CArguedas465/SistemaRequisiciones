@@ -29,95 +29,234 @@
         </div>
     </nav>
     <section>
-        <h1 class="h3">Página Principal</h1>
-
+        <h1 class="h3">
+            Página Principal
+            <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
+        </h1>
+        <div style="text-align: right; margin: 20px;">
+            <button onclick="emergente_BusquedaEspecifica_Abrir()" class="btn btn-success">Búsqueda específica</button>
+        </div>
         <h2>Requisiciones Enviadas</h2>
-        <table class="table table-borderless" id="tablaRequisicionesEnviadas">
-            <thead>
-                <th>IdRequisición</th>
-                <th>Fecha Solicitud</th>
-                <th>Producto</th>
-                <th>Costo</th>
-                <th>Imagen</th>
-                <th>Detalle</th>
-                <th>Asignada A</th>
-            </thead>
-            <tbody>
-                <td>1232185</td>
-                <td>3/30/2022</td>
-                <td>Silla</td>
-                <td>175000</td>
-                <td>***</td>
-                <td>Descripción de Detalle</td>
-                <td>123456</td>
-            </tbody>
-        </table>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaRequisicionesEnviadas">
+                <thead>
+                    <th>IdRequisición</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Imagen</th>
+                    <th>Detalle</th>
+                    <th>Asignada A</th>
+                </thead>
+                <tbody onclick="requisicionesEnviadasSeleccion()">
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagen asd</td>
+                        <td>Descripción de Detalle 1</td>
+                        <td>123456</td>
+                    </tr> 
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagen dfg</td>
+                        <td>Descripción de Detalle 1</td>
+                        <td>123456</td>
+                    </tr> 
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagengjfg</td>
+                        <td>Descripción de Detalle 1</td>
+                        <td>123456</td>
+                    </tr> 
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagenfghf</td>
+                        <td>Descripción de Detalle 1</td>
+                        <td>123456</td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
         <h2>Requisiciones En Revisión</h2>
-        <table class="table table-borderless" id="tablaRequisicionesEnviadas">
-            <thead>
-                <th>IdRequisición</th>
-                <th>Fecha Solicitud</th>
-                <th>Producto</th>
-                <th>Costo</th>
-                <th>Imagen</th>
-                <th>Detalle</th>
-                <th>Asignada A</th>
-            </thead>
-            <tbody>
-                <td>848912</td>
-                <td>3/30/2022</td>
-                <td>Mouse</td>
-                <td>30000</td>
-                <td>***</td>
-                <td>Descripción de Detalle</td>
-                <td>123456</td>
-            </tbody>
-        </table>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaRequisicionesEnRevision">
+                <thead>
+                    <th>IdRequisición</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Imagen</th>
+                    <th>Detalle</th>
+                    <th>Asignada A</th>
+                </thead>
+                <tbody onclick="requisicionesEnRevisionSeleccion()">
+                    <tr>
+                        <td>848912</td>
+                        <td>3/30/2022</td>
+                        <td>Mouse</td>
+                        <td>30000</td>
+                        <td>Imagen 2</td>
+                        <td>Descripción de Detalle 2</td>
+                        <td>123456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h2>Requisiciones Rechazadas</h2>
-        <table class="table table-borderless" id="tablaRequisicionesEnviadas">
-            <thead>
-                <th>IdRequisición</th>
-                <th>Fecha Solicitud</th>
-                <th>Producto</th>
-                <th>Costo</th>
-                <th>Imagen</th>
-                <th>Detalle</th>
-                <th>Asignada A</th>
-            </thead>
-            <tbody>
-                <td>1232185</td>
-                <td>3/30/2022</td>
-                <td>Silla</td>
-                <td>175000</td>
-                <td>***</td>
-                <td>Descripción de Detalle</td>
-                <td>123456</td>
-            </tbody>
-        </table>
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaRequisicionesRechazadas">
+                <thead>
+                    <th>IdRequisición</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Imagen</th>
+                    <th>Detalle</th>
+                    <th>Asignada A</th>
+                </thead>
+                <tbody onclick="requisicionesRechazadasSeleccion()">
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagen 3</td>
+                        <td>Descripción de Detalle 3</td>
+                        <td>123456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h2>Requisiciones Aprobadas</h2>
-        <table class="table table-borderless" id="tablaRequisicionesEnviadas">
-            <thead>
-                <th>IdRequisición</th>
-                <th>Fecha Solicitud</th>
-                <th>Producto</th>
-                <th>Costo</th>
-                <th>Imagen</th>
-                <th>Detalle</th>
-                <th>Asignada A</th>
-            </thead>
-            <tbody>
-                <td>1232185</td>
-                <td>3/30/2022</td>
-                <td>Silla</td>
-                <td>175000</td>
-                <td>***</td>
-                <td>Descripción de Detalle</td>
-                <td>123456</td>
-            </tbody>
-        </table>
-
-
+        <div class="scrollableTableDiv">
+            <table class="table table-borderless" id="tablaRequisicionesAprobadas">
+                <thead>
+                    <th>IdRequisición</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Imagen</th>
+                    <th>Detalle</th>
+                    <th>Asignada A</th>
+                </thead>
+                <tbody onclick="requisicionesAprobadasSeleccion()">
+                    <tr>
+                        <td>1232185</td>
+                        <td>3/30/2022</td>
+                        <td>Silla</td>
+                        <td>175000</td>
+                        <td>Imagen 4</td>
+                        <td>Descripción de Detalle 4</td>
+                        <td>123456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <!--Ventanas modales-->
+
+        <!--Ventana de muestra de la imagen-->
+        <div id="modalImagenPagPrincipal" class="modal" style="z-index: 2;">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_ImagenProducto_Cerrar()">&times;</span>
+                <h2 class="h1">Imagen</h2>
+                <div id="espacioParaImagen">
+                    <p>Párrafo de muestra</p>
+                </div>
+            </div>
+        </div>
+
+        <!--Ventana de muestra de detalle-->
+        <div id="modalDetallePagPrincipal" class="modal" style="z-index: 2;">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_DetalleProducto_Cerrar()">&times;</span>
+                <h2 class="h1">Detalle</h2>
+                <textarea id="espacioParaDetalle" cols="75" rows="6" readonly disabled></textarea>
+            </div>
+        </div>
+
+        <!--Ventana modal de búsqueda-->
+        <div id="modalBusquedaEspecifica" class="modal" style="z-index: 1;">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_BusquedaEspecifica_Cerrar()">&times;</span>
+                <h2 class="h4">Búsqueda Específica</h2>
+                <form>
+                    <label for="busqueda">Búsqueda</label>
+                    <input type="text" id="busqueda" name="busqueda">
+                    <label for="criterio">Criterio de Búsqueda</label>
+                    <select name="criterio" id="criterio">
+                        <option value="N/A">Seleccione criterio</option>
+                        <option value="fecha">Por Fecha</option>
+                        <option value="nombre">Por Nombre</option>
+                    </select>
+                    <br>
+                    <label for="rango" style="display: block; text-align: left;"><b>Rango Fechas</b></label>
+                    <br>
+                    <div id="rango" style="text-align: left;">
+                        <label for="inferior">Desde</label>
+                        <input type="date" name="inferior" id="inferior">
+                        <label for="superior">Hasta</label>
+                        <input type="date" name="superior" id="superior">
+                        <input type="button" value="Buscar" class="btn btn-success">
+                    </div>
+                    <br>
+                    <div class="scrollableTableDiv scrollableDivBusqueda">
+                        <table class="table table-borderless" id="tablaBusquedaEspecifica">
+                            <thead>
+                                <th>IdRequisición</th>
+                                <th>Fecha Solicitud</th>
+                                <th>Producto</th>
+                                <th>Costo</th>
+                                <th>Imagen</th>
+                                <th>Detalle</th>
+                                <th>Asignada A</th>
+                            </thead>
+                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">
+                                <tr>
+                                    <td>x</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                </tr>
+                                <tr>
+                                    <td>y</td>
+                                    <td>y</td>
+                                    <td>y</td>
+                                    <td>y</td>
+                                    <td>y</td>
+                                    <td>y</td>
+                                    <td>y</td>
+                                </tr>
+                                <tr>
+                                    <td>z</td>
+                                    <td>z</td>
+                                    <td>z</td>
+                                    <td>z</td>
+                                    <td>z</td>
+                                    <td>z</td>
+                                    <td>z</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
 
         <!--Ventana modal opciones de correo-->
         <div id="modalCorreo" class="modal">
@@ -133,7 +272,21 @@
                 </div>
             </div>
         </div>
+
+        <!--Ventana modal cerrar sesión-->
+        <div id="modalCerrarSesion" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_CerrarSesion_Cerrar()">&times;</span>
+                <h2>Cerrar Sesión</h2>
+                <p>¿Seguro que desea cerrar sesión?</p>
+                <div style="text-align: right;">
+                    <a href="login.html" target="_blank" class="btn btn-success">Aceptar</a>
+                    <button onclick="emergente_CerrarSesion_Cerrar()" class="btn btn-secondary">Volver</button>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 </html>
 <script src="../javascript/ventanasEmergentes_General.js"></script>
+<script src="../javascript/ventanasEmergentes_Principal.js"></script>
