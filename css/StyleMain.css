@@ -10,13 +10,28 @@ body{
 }
 
 /*Estilo del título de cada sección*/
-h1{
+h1 { 
     margin: 0px;
     text-align: center;
-    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif; 
     background-color: #1224CA;
     color: #fff;
     padding: 5px;
+}
+
+h1 span {
+    float: right;
+    font-size: small;
+    vertical-align: middle;
+    border-radius: 10px;
+    background-color: #000;
+    width: 85px;
+    transition: background-color 0.2s ease-in;
+}
+
+h1 span:hover{
+    background-color: red;
+    cursor: pointer;
 }
 
 /*Estilo barra de navegación lateral*/
@@ -45,6 +60,7 @@ nav a, nav button {
 /*Cuando se pasa por encima de un elemento de la barra de navegación, su fondo se vuelve de color midnightblue.*/
 nav a:hover{
     background-color: midnightblue;
+    color: #fff;
 }
 
 /*Estilo de Bienvenida del empleado, barra lateral*/
@@ -122,9 +138,9 @@ estilos de las ventanas modales se encierra con guiones.*/
     background-color: #f4f4f4;
     margin: 10% auto;
     padding: 20px;
-    width: 70%;
+    width: 70% !important;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-    border-radius: 10px;
+    border-radius: 20px !important;
     animation-name: modalContentOpen; 
     animation-duration: 0.5s;
 }
@@ -158,6 +174,11 @@ estilos de las ventanas modales se encierra con guiones.*/
     to {
         background-color: rgba(255,255,255,0.4);
     }
+}
+
+.modal-content span{
+    display: block;
+    text-align: right;
 }
 
 /*---------------------------------------------------------------------------------------------------------------------*/

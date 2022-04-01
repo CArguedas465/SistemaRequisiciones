@@ -1,0 +1,55 @@
+html{
+    overflow-y: auto;
+}
+
+h2{
+    margin: 10px;
+}
+
+table {
+    background-color: #b4b4b4;
+}
+
+tbody tr{
+    background-color: #b4b4b4;
+    transition: background-color 0.2s ease-in;
+}
+
+tbody tr:hover{
+    color: green;
+    cursor: pointer;
+}
+
+form{
+    text-align: center;
+}
+
+form * {
+    margin: 10px;
+}
+
+#modalRequisicion button{
+    margin: 5px;
+}
+
+form input, select, textarea{
+    border-radius: 10px;
+    border: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+    transition: border-color 0.5s ease-in;
+}
+
+form input[disabled], textarea[disabled]{
+    border: 1px solid rgb(218, 218, 218);
+}
+
+form textarea, textarea[disabled]{
+    text-align: left;
+}
+
+.scrollableTableDiv{
+    height: 90%;
+    overflow-y: scroll;
+    background-color: #b4b4b4;
+}
