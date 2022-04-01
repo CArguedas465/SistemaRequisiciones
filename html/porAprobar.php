@@ -35,6 +35,22 @@
 
             $arrayRol = $resultadoConsultaRol -> fetch_assoc();
 
+            $_SESSION["RolUsuario"] = $arrayRol["Rol"];
+
+
+            /* Creación Variables Globales*/
+            $consultaRangoInferior = "SELECT rol.RangoInferior AS RangoInferior FROM rol INNER JOIN empleado ON rol.IdRol = empleado.Rol WHERE empleado.Id_Empleado = ".$_SESSION["idusuario"];
+            $resultadoConsultaRangoInferior = $conexion -> query($consultaRangoInferior);
+            $arrayRangoInferior = $resultadoConsultaRangoInferior -> fetch_assoc();
+            $_SESSION["RangoInferior"] = $arrayRangoInferior["RangoInferior"];
+
+            $consultaRangoSuperior = "SELECT rol.RangoSuperior AS RangoSuperior FROM rol INNER JOIN empleado ON rol.IdRol = empleado.Rol WHERE empleado.Id_Empleado = ".$_SESSION["idusuario"];
+            $resultadoConsultaRangoSuperior = $conexion -> query($consultaRangoSuperior);
+            $arrayRangoSuperior = $resultadoConsultaRangoSuperior -> fetch_assoc();
+            $_SESSION["RangoSuperior"] = $arrayRangoSuperior["RangoSuperior"];
+
+
+
             if($arrayRol["Rol"]=="1"){
                 echo '<a href="paginaPrincipal.php">Página Principal</a>
                       <a href="nuevaRequisicion.php">Nueva Requisición</a>
@@ -78,7 +94,7 @@
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
         </h1>
         <div class="scrollableTableDiv">
-            <table class="table table-borderless" id="tablaRequisiciones">
+            <table class="table table-borderless" id="tablaRequisicionesPorAprobar">
                 <thead>
                     <th>IdRequisición</th>
                     <th>Fecha Solicitud</th>
@@ -89,30 +105,35 @@
                     <th>IdEmpleado</th>
                     <th>Detalle</th>
                 </thead>
-                <tbody ondblclick="leerFila()">
-                    <tr>
-                        <td>126348</td>
-                        <td>3/29/2022</td>
-                        <td>Computadora para trabajo</td>
-                        <td>1000000</td>
-                        <td>Enviada</td>
-                        <td>***</td>
-                        <td>1585652</td>
-                        <td>Detalle</td>
-                    </tr>
-                    <tr>
-                        <td>54198515</td>
-                        <td>3/29/2022</td>
-                        <td>Helloo</td>
-                        <td>500000</td>
-                        <td>En revisión</td>
-                        <td>***</td>
-                        <td>1585652</td>
-                        <td>Detalle</td>
-                    </tr>
+                
+
+
+
+
+
+                <tbody> <!-- Falta asignar JS -->
+
+                    <?php
+                        include '../clases/requisicion_Nicolas.php';
+                        $requisicion = new requisicion_Nicolas();
+                        $resultadoRequisicionesPorAprobar = $requisicion -> GetRequisicionesPorAprobar ($_SESSION["idusuario"]);
+
+                        while ($row = $resultadoRequisicionesPorAprobar -> fetch_assoc()){
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Estado"]."</td><td>".$row["Imagen"]."</td><td>".$row["Id_Empleado"]."</td><td>".$row["Detalle"]."</td></tr>";
+                        }
+                    ?>
+
                 </tbody>
             </table>
         </div>
+
+
+
+
+
+
+
+
 
         <!--Ventanas modales-->
 
@@ -140,12 +161,14 @@
                     <label for="detalle">Notas del aprobador</label>
                     <textarea cols="150" rows="3" id="detalle" name="detalle"></textarea>
                 </form>
+                
                 <br>
                 <div>
                     <button style="float: left;" class="btn btn-secondary" onclick="emergente_Requisicion_Cerrar()">Volver</button>
                     <button style="float: right;" class="btn btn-success" onclick="emergente_AprobarRequisicion_Confirmacion_Abrir()">Aprobar Solicitud</button>
                     <button style="float: right;" class="btn btn-danger" onclick="emergente_DenegarRequisicion_Confirmacion_Abrir()">Denegar Solicitud</button>
                 </div>
+                
             </div>
         </div>
 
@@ -155,21 +178,31 @@
                 <span id="closeButton" class="closeButton" onclick="emergente_AprobarRequisicion_Confirmacion_Cerrar()">&times;</span>
                 <p>Aprobación</p>
                 <p id="numeroRequisicionConfirmacion"></p>
+                <form action="../scriptsPHP/aprobarRequisicion.php" method="post">
+                    <?php
+                        echo '<input style="display: none;" type="text" id="AprobarRequisicion_IdRequisicion" name="AprobarRequisicion_IdRequisicion">'.
+                        '<input style="display: none;" type="text" id="AprobarRequisicion_Rol" name="AprobarRequisicion_Rol" value="'.$_SESSION["RolUsuario"].'">'.
+                        '<input style="display: none;" type="text" id="AprobarRequisicion_RangoInferior" name="AprobarRequisicion_RangoInferior" value="'.$_SESSION["RangoInferior"].'">'.
+                        '<input style="display: none;" type="text" id="AprobarRequisicion_RangoSuperior" name="AprobarRequisicion_RangoSuperior" value="'.$_SESSION["RangoSuperior"].'">';
+                    ?>
+                    
+                    <!--
+                    <input style="display: none;" type="text" id="AprobarRequisicion_IdRequisicion" name="AprobarRequisicion_IdRequisicion">
+                    <input style="display: none;" type="text" id="AprobarRequisicion_Rol" name="AprobarRequisicion_Rol" value=<?php echo '"'.$_SESSION["RolUsuario"].'"'?>>
+                    <input style="display: none;" type="text" id="AprobarRequisicion_RangoInferior" name="AprobarRequisicion_RangoInferior" value=<?php echo '"'.$_SESSION["RangoInferior"].'"'?>>
+                    <input style="display: none;" type="text" id="AprobarRequisicion_RangoSuperior" name="AprobarRequisicion_RangoSuperior" value=<?php echo '"'.$_SESSION["RangoSuperior"].'"'?>>
+                    -->
+
+
+                    <input class="btn btn-success" type="submit" value="Aceptar">
+                    <input class="btn btn-secondary" type="button" value="Volver" onclick="emergente_AprobarRequisicion_Confirmacion_Cerrar()">
+                </form>
+                <!--
                 <div>
                     <button onclick="emergente_AprobarRequisicion_ConfirmacionFinal_Abrir()">Aceptar</button>
                     <button onclick="emergente_AprobarRequisicion_Confirmacion_Cerrar()">Volver</button>
                 </div>
-            </div>
-        </div>
-
-        <!--Ventana de confirmación de aprobación, final-->
-        <div id="modalAprobarRequisicion_ConfirmacionFinal" class="modal">
-            <div class="modal-content">
-                <p>Aprobación</p>
-                <p id="confirmacionFinalNumeroRequisicion"></p>
-                <div>
-                    <button onclick="emergente_AprobarRequisicion_ConfirmacionFinal_Cerrar()">Aceptar</button>
-                </div>
+                    -->
             </div>
         </div>
 
