@@ -157,7 +157,17 @@
                     <th>Asignada A</th>
                 </thead>
                 <tbody onclick="requisicionesEnRevisionSeleccion()">
-                    <tr>
+                <?php
+
+                        $requisicion = new requisicion();
+
+                        $resultadoRequisicionesEnRevision = $requisicion -> GetRequisicionesEnRevision($_SESSION["idusuario"]);
+
+                        while ($row = $resultadoRequisicionesEnRevision->fetch_assoc()){
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                        }
+                    ?>
+                    <!--tr>
                         <td>848912</td>
                         <td>3/30/2022</td>
                         <td>Mouse</td>
@@ -165,7 +175,7 @@
                         <td>Imagen 2</td>
                         <td>Descripción de Detalle 2</td>
                         <td>123456</td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -182,7 +192,17 @@
                     <th>Asignada A</th>
                 </thead>
                 <tbody onclick="requisicionesRechazadasSeleccion()">
-                    <tr>
+                 <?php
+
+                        $requisicion = new requisicion();
+
+                        $resultadoRequisicionesRechazadas = $requisicion -> GetRequisicionesRechazadas($_SESSION["idusuario"]);
+
+                        while ($row = $resultadoRequisicionesRechazadas->fetch_assoc()){
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                        }
+                    ?>
+                    <!--tr>
                         <td>1232185</td>
                         <td>3/30/2022</td>
                         <td>Silla</td>
@@ -190,7 +210,7 @@
                         <td>Imagen 3</td>
                         <td>Descripción de Detalle 3</td>
                         <td>123456</td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -207,7 +227,17 @@
                     <th>Asignada A</th>
                 </thead>
                 <tbody onclick="requisicionesAprobadasSeleccion()">
-                    <tr>
+                <?php
+
+                        $requisicion = new requisicion();
+
+                        $resultadoRequisicionesAprovadas = $requisicion -> GetRequisicionesAprobadas($_SESSION["idusuario"]);
+
+                        while ($row = $resultadoRequisicionesAprovadas->fetch_assoc()){
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                        }
+                    ?>
+                    <!--tr>
                         <td>1232185</td>
                         <td>3/30/2022</td>
                         <td>Silla</td>
@@ -215,7 +245,7 @@
                         <td>Imagen 4</td>
                         <td>Descripción de Detalle 4</td>
                         <td>123456</td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -278,7 +308,7 @@
                                 <th>Detalle</th>
                                 <th>Asignada A</th>
                             </thead>
-                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">
+                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">      
                                 <tr>
                                     <td>x</td>
                                     <td>x</td>
@@ -309,7 +339,6 @@
                             </tbody>
                         </table>
                     </div>
-                    
                 </form>
             </div>
         </div>

@@ -63,10 +63,24 @@ function emergente_AgregarEmpleado_Confirmacion_Abrir(){
         document.getElementById('nombre').value=="" ||
         document.getElementById('apellido1').value=="" ||
         document.getElementById('email').value=="" ||
-        document.getElementById('rol').value=="N/A"){
+        document.getElementById('rol').value=="N/A" ||
+        document.getElementById('jefe').value=="N/A"){
             alert("Debe llenar todos los campos solicitados.");
     } else {
+        if(!Number.isInteger(Number.parseInt(document.getElementById('cedula').value))){
+            alert("La cédula debe ser un valor numérico.")
+            return;
+        }
+        
         document.getElementById('nombreEmpleadoConfirmacion').innerHTML = "¿Seguro que desea adicionar al empleado "+document.getElementById('nombre').value+" "+ document.getElementById('apellido1').value+" al sistema?";
+
+        document.getElementById('agregarEmpleado_cedula').value = document.getElementById('cedula').value;
+        document.getElementById('agregarEmpleado_nombre').value = document.getElementById('nombre').value;
+        document.getElementById('agregarEmpleado_apellido1').value = document.getElementById('apellido1').value;
+        document.getElementById('agregarEmpleado_apellido2').value = document.getElementById('apellido2').value;
+        document.getElementById('agregarEmpleado_correo').value = document.getElementById('email').value; 
+        document.getElementById('agregarEmpleado_rol').value = document.getElementById('rol').value;
+        document.getElementById('agregarEmpleado_jefe').value = document.getElementById('jefe').value;
 
         var modal = document.getElementById('modalAgregarEmpleado_Confirmacion');
         modal.style.display = 'block';
@@ -100,26 +114,19 @@ function emergente_HabilitarEmpleado_Confirmacion_Abrir(){
         return;
     }
 
+    var tabla = document.getElementById('tablaEmpleadosInactivos');
+
+    var coleccion = tabla.rows;
+
+    document.getElementById('numeroEmpleadoConfirmacion_Habilitar').innerHTML = "¿Habilitar empleado "+coleccion.item(inactivoSeleccionado).cells.item(0).textContent+"?";
+    document.getElementById('idempleado_habilitar').value = coleccion.item(inactivoSeleccionado).cells.item(0).textContent;
+
     var modal = document.getElementById('modalHabilitarEmpleado_Confirmacion');
     modal.style.display = 'block';
 }
 
 function emergente_HabilitarEmpleado_Confirmacion_Cerrar(){
     var modal = document.getElementById('modalHabilitarEmpleado_Confirmacion');
-    modal.style.display = 'none';
-}
-
-/*Confirmación Final de Habilitar Empleado*/
-
-function emergente_HabilitarEmpleado_ConfirmacionFinal_Abrir(){
-    emergente_HabilitarEmpleado_Confirmacion_Cerrar();
-    var modal = document.getElementById('modalHabilitarEmpleado_ConfirmacionFinal');
-    modal.style.display = 'block';
-
-}
-
-function emergente_HabilitarEmpleado_ConfirmacionFinal_Cerrar(){
-    var modal = document.getElementById('modalHabilitarEmpleado_ConfirmacionFinal');
     modal.style.display = 'none';
 }
 
@@ -132,25 +139,18 @@ function emergente_DeshabilitarEmpleado_Confirmacion_Abrir(){
         return;
     }
 
+    var tabla = document.getElementById('tablaEmpleadosActivos');
+
+    var coleccion = tabla.rows;
+
+    document.getElementById('numeroEmpleadoConfirmacion_Deshabilitar').innerHTML = "¿Deshabilitar empleado "+coleccion.item(activoSeleccionado).cells.item(0).textContent+"?";
+    document.getElementById('idempleado_deshabilitar').value = coleccion.item(activoSeleccionado).cells.item(0).textContent;
+
     var modal = document.getElementById('modalDeshabilitarEmpleado_Confirmacion');
     modal.style.display = 'block';
 }
 
 function emergente_DeshabilitarEmpleado_Confirmacion_Cerrar(){
     var modal = document.getElementById('modalDeshabilitarEmpleado_Confirmacion');
-    modal.style.display = 'none';
-}
-
-/*Confirmación Final de Deshabilitar Empleado*/
-
-function emergente_DeshabilitarEmpleado_ConfirmacionFinal_Abrir(){
-    emergente_DeshabilitarEmpleado_Confirmacion_Cerrar();
-    var modal = document.getElementById('modalDeshabilitarEmpleado_ConfirmacionFinal');
-    modal.style.display = 'block';
-
-}
-
-function emergente_DeshabilitarEmpleado_ConfirmacionFinal_Cerrar(){
-    var modal = document.getElementById('modalDeshabilitarEmpleado_ConfirmacionFinal');
     modal.style.display = 'none';
 }
