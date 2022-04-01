@@ -95,6 +95,18 @@
                     </tr>
                 </thead>
                 <tbody onclick="evidenciarSeleccionActivos()">
+                    <?php 
+                        include '../clases/empleado.php';
+
+                        $empleados = new empleado(); 
+
+                        $resultadoEmpleadosActivos = $empleados -> GetEmpleadosActivos();
+
+                        while ($row = $resultadoEmpleadosActivos->fetch_assoc()){
+                            echo "<tr><td>".$row["Id_Empleado"]."</td><td>".$row["Cedula"]."</td><td>".$row["Nombre"]."</td><td>".$row["Apellido_1"]."</td><td>".$row["Apellido_2"]."</td><td>".$row["Correo_Electronico"]."</td><td>".$row["Rol"]."</td><td>".$row["IdUsuario"]."</td><td>".$row["Jefe"]."</td></tr>";
+                        }
+                    ?>
+                    <!--
                     <tr>
                         <td>157488</td>
                         <td>116580465</td>
@@ -116,8 +128,7 @@
                         <td>Jefe Aprobador</td>
                         <td>nbeisswengerl963</td>
                         <td>****</td>
-                    </tr>
-                    
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -141,6 +152,15 @@
                         </tr>
                 </thead>
                 <tbody onclick="evidenciarSeleccionInactivos()">
+                    <?php
+                        $resultadoEmpleadosInactivos = $empleados -> GetEmpleadosInactivos(); 
+
+                        while ($row = $resultadoEmpleadosInactivos->fetch_assoc()){
+                            echo "<tr><td>".$row["Id_Empleado"]."</td><td>".$row["Cedula"]."</td><td>".$row["Nombre"]."</td><td>".$row["Apellido_1"]."</td><td>".$row["Apellido_2"]."</td><td>".$row["Correo_Electronico"]."</td><td>".$row["Rol"]."</td><td>".$row["IdUsuario"]."</td><td>".$row["Jefe"]."</td></tr>";
+                        }
+
+                    ?>
+                    <!--
                     <tr>
                         <td>Dato 1</td>
                         <td>Dato 2</td>
@@ -163,6 +183,7 @@
                         <td>Dato 2</td>
                         <td>Dato 1</td>
                     </tr>
+                    -->
                 </tbody>
             </table>
         </div>
@@ -190,6 +211,17 @@
                 <option value="Aprobador Financiero 2">Aprobador Financiero 2</option>
                 <option value="Aprobador Financiero 3">Aprobador Financiero 3</option>
             </select>
+            <label for="jefe">Jefe: </label>
+            <select name="jefe" id="jefe">
+                <option value="N/A">Seleccione una opción</option>
+                <?php 
+                    $resultadoJefesAprobadores = $empleados -> GetJefesAprobadores();
+
+                    while ($row = $resultadoJefesAprobadores->fetch_assoc()){
+                        echo "<option value='".$row["Jefe"]."'>".$row["Jefe"]."</option>";
+                    }
+                ?>
+            </select>
         </form>
         <div id="divBotonAgregarEmpleado">
             <button class="btn btn-success" onclick="emergente_AgregarEmpleado_Confirmacion_Abrir()">Agregar Empleado</button>
@@ -203,10 +235,21 @@
                 <span id="closeButton" class="closeButton" onclick="emergente_AgregarEmpleado_Confirmacion_Cerrar()">&times;</span>
                 <h2>Agregar Empleado</h2>
                 <p id="nombreEmpleadoConfirmacion"></p>
-                <div>
+                <form style="text-align: right" method="POST" action="../scriptsPHP/agregarEmpleado.php">
+                    <input type="text" style="display: none;" name="agregarEmpleado_cedula" id="agregarEmpleado_cedula"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_nombre" id="agregarEmpleado_nombre"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_apellido1" id="agregarEmpleado_apellido1"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_apellido2" id="agregarEmpleado_apellido2"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_correo" id="agregarEmpleado_correo"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_rol" id="agregarEmpleado_rol"/>
+                    <input type="text" style="display: none;" name="agregarEmpleado_jefe" id="agregarEmpleado_jefe"/>
+                    <input type="submit" value="Aceptar" style="width: 75px" class="btn btn-success"></input> 
+                    <input type="button" onclick="emergente_AgregarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary" value="Volver"></button>
+                </form>
+                <!--<div>
                     <button onclick="emergente_AgregarEmpleado_ConfirmacionFinal_Abrir()" class="btn btn-success">Aceptar</button>
                     <button onclick="emergente_AgregarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary">Volver</button>
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -226,22 +269,12 @@
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_HabilitarEmpleado_Confirmacion_Cerrar()">&times;</span>
                 <h2>Habilitar empleado</h2>
-                <p>¿Habilitar empleado?</p>
-                <div>
-                    <button onclick="emergente_HabilitarEmpleado_ConfirmacionFinal_Abrir()" class="btn btn-success">Aceptar</button>
-                    <button onclick="emergente_HabilitarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary">Volver</button>
-                </div>
-            </div>
-        </div>
-
-        <!--Confirmación de habilitación de empleado, final-->
-        <div id="modalHabilitarEmpleado_ConfirmacionFinal" class="modal">
-            <div class="modal-content">
-                <h2>Habilitar empleado</h2>
-                <p>Se ha habilitado el empleado.</p>
-                <div>
-                    <button onclick="emergente_HabilitarEmpleado_ConfirmacionFinal_Cerrar()" class="btn btn-success">Aceptar</button>
-                </div>
+                <p id="numeroEmpleadoConfirmacion_Habilitar"></p>
+                <form style="text-align: right" method="POST" action="../scriptsPHP/habilitarEmpleado.php">
+                    <input type="text" style="display: none;" name="idempleado_habilitar" id="idempleado_habilitar"/>
+                    <input type="submit" value="Aceptar" style="width: 75px" class="btn btn-success"></input> 
+                    <input type="button" onclick="emergente_HabilitarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary" value="Volver"></button>
+                </form>
             </div>
         </div>
 
@@ -251,25 +284,15 @@
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_DeshabilitarEmpleado_Confirmacion_Cerrar()">&times;</span>
                 <h2>Deshabilitar empleado</h2>
-                <p>¿Deshabilitar empleado?</p>
-                <div>
-                    <button onclick="emergente_DeshabilitarEmpleado_ConfirmacionFinal_Abrir()" class="btn btn-success">Aceptar</button>
-                    <button onclick="emergente_DeshabilitarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary">Volver</button>
-                </div>
+                <p id = "numeroEmpleadoConfirmacion_Deshabilitar"></p>
+                <form style="text-align: right" method="POST" action="../scriptsPHP/deshabilitarEmpleado.php">
+                    <input type="text" style="display: none;" name="idempleado_deshabilitar" id="idempleado_deshabilitar"/>
+                    <input type="submit" value="Aceptar" style="width: 75px" class="btn btn-success"></input> 
+                    <input type="button" onclick="emergente_DeshabilitarEmpleado_Confirmacion_Cerrar()" class="btn btn-secondary" value="Volver"></button>
+                </form>
+                
             </div>
         </div>
-
-        <!--Confirmación de deshabilitación de empleado, final-->
-        <div id="modalDeshabilitarEmpleado_ConfirmacionFinal" class="modal">
-            <div class="modal-content">
-                <h2>Deshabilitar empleado</h2>
-                <p>Se ha deshabilitado el empleado.</p>
-                <div>
-                    <button onclick="emergente_DeshabilitarEmpleado_ConfirmacionFinal_Cerrar()" class="btn btn-success">Aceptar</button>
-                </div>
-            </div>
-        </div>
-
 
         <!--Ventana modal para opciones de correo electrónico-->
         <div id="modalCorreo" class="modal">
@@ -298,9 +321,11 @@
                 </div>
             </div>
         </div>
+
     </section>
 </body>
+
 </html>
 <script src="../javascript/ventanasEmergentes_Administracion.js"></script>
 <script src="../javascript/ventanasEmergentes_General.js"></script>
-<script src="../javascript/administracion.js"></script>
+<script src="../javascript/admin.js"></script> <!--Ver si se ocupa o no-->

@@ -308,7 +308,7 @@
                                 <th>Detalle</th>
                                 <th>Asignada A</th>
                             </thead>
-                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">
+                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">      
                                 <tr>
                                     <td>x</td>
                                     <td>x</td>
@@ -339,7 +339,6 @@
                             </tbody>
                         </table>
                     </div>
-                    
                 </form>
             </div>
         </div>
