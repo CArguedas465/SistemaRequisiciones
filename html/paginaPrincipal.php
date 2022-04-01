@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +21,56 @@
             <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
         </div>
         <p>Bienvenido</p>
-        <p id="nombreEmpleado">*nombreDelEmpleado*</p>
-        <a href="paginaPrincipal.html">Página Principal</a>
-        <a href="nuevaRequisicion.html">Nueva Requisición</a>
-        <a href="admin.html">Administración</a>
-        <a href="reportes.html">Reportes</a>
-        <a href="porAprobar.html">Por Aprobar</a>
-        <div id="botonCorreo">
-            <button id="opcionesCorreoElectronico" onclick="emergente_Correo_Abrir()">Opciones de E-mail</button>
-        </div>
+        <?php
+            $sql = "SELECT CONCAT(Nombre, ' ', Apellido_1, ' ', Apellido_2) AS Employee FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
+            $conexion = mysqli_connect('localhost', 'root', '', 'sistema_requisiciones');
+            $resultado = $conexion -> query($sql);
+
+            $array = $resultado -> fetch_assoc();
+            
+            echo '<p>'.$array["Employee"].'</p>';
+
+            $consultaRol = "SELECT Rol FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
+            $resultadoConsultaRol = $conexion -> query($consultaRol);
+
+            $arrayRol = $resultadoConsultaRol -> fetch_assoc();
+
+            if($arrayRol["Rol"]=="1"){
+                echo '<a href="paginaPrincipal.php">Página Principal</a>
+                      <a href="nuevaRequisicion.php">Nueva Requisición</a>
+                      <a href="admin.php" style="pointer-events: none; background-color: gray;">Administración</a>
+                      <a href="reportes.php" style="pointer-events: none; background-color: gray;">Reportes</a>
+                      <a href="porAprobar.php" style="pointer-events: none; background-color: gray;">Por Aprobar</a>
+                      <div id="botonCorreo">
+                          <button id="opcionesCorreoElectronico" onclick="emergente_Correo_Abrir()">Opciones de E-mail</button>
+                      </div>';
+            } elseif ($arrayRol["Rol"] >= "2" and $arrayRol["Rol"] <= "5"){
+                echo '<a href="paginaPrincipal.php">Página Principal</a>
+                      <a href="nuevaRequisicion.php">Nueva Requisición</a>
+                      <a href="admin.php" style="pointer-events: none; background-color: gray;">Administración</a>
+                      <a href="reportes.php">Reportes</a>
+                      <a href="porAprobar.php">Por Aprobar</a>
+                      <div id="botonCorreo">
+                          <button id="opcionesCorreoElectronico" onclick="emergente_Correo_Abrir()">Opciones de E-mail</button>
+                      </div>';
+            } elseif ($arrayRol["Rol"]=="6"){
+                echo '<a href="paginaPrincipal.php">Página Principal</a>
+                      <a href="nuevaRequisicion.php">Nueva Requisición</a>
+                      <a href="admin.php">Administración</a>
+                      <a href="reportes.php" style="pointer-events: none; background-color: gray;">Reportes</a>
+                      <a href="porAprobar.php" style="pointer-events: none; background-color: gray;">Por Aprobar</a>
+                      <div id="botonCorreo">
+                          <button id="opcionesCorreoElectronico" onclick="emergente_Correo_Abrir()">Opciones de E-mail</button>
+                      </div>';
+            }
+
+            $consultaIdUsuario = "SELECT Id_Empleado AS idempleado FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
+            $resultadoConsultaIdUsuario = $conexion -> query($consultaIdUsuario);
+
+            $arrayIdUsuario = $resultadoConsultaIdUsuario -> fetch_assoc();
+
+            $_SESSION["idusuario"] = $arrayIdUsuario["idempleado"];
+        ?>
     </nav>
     <section>
         <h1 class="h3">
@@ -49,6 +93,18 @@
                     <th>Asignada A</th>
                 </thead>
                 <tbody onclick="requisicionesEnviadasSeleccion()">
+                    <?php
+                        include '../clases/requisicion.php';
+
+                        $requisicion = new requisicion();
+
+                        $resultadoRequisicionesEnviadas = $requisicion -> GetRequisicionesEnviadas($_SESSION["idusuario"]);
+
+                        while ($row = $resultadoRequisicionesEnviadas->fetch_assoc()){
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                        }
+                    ?>
+                    <!--
                     <tr>
                         <td>1232185</td>
                         <td>3/30/2022</td>
@@ -84,7 +140,7 @@
                         <td>Imagenfghf</td>
                         <td>Descripción de Detalle 1</td>
                         <td>123456</td>
-                    </tr> 
+                    </tr>--> 
                 </tbody>
             </table>
         </div>

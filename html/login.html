@@ -11,7 +11,7 @@
 <body>
     <h1>Sistema Requisiciones</h1>
     <div class="container">
-        <form id="login" name="login" method="get">
+        <form id="login" name="login" method="post" action="../scriptsPHP/autenticarUsuario.php" enctype="multipart/form-data">
             <div class="elemento">
                 <label for="usuario">Usuario </label>
                 <input type="text" name="usuario" id="usuario" required="true">
@@ -21,7 +21,7 @@
                 <input type="password" name="password" id="password" required="true">
             </div>
             <div class="elemento" id="Login_Ingresar"> 
-                <input id="ingresar" type="button" onclick="validacion()" value="Ingresar">
+                <input id="ingresar" type="submit" value="Ingresar">
             </div>
             <div class="Login_Botones_Inferior">
                 <input id="Boton_Login_RecuperarContrasenia" onclick = "recuperacionContrasenia()" type="button" value="Recuperar Contraseña">
