@@ -1,6 +1,6 @@
 var rIndex;
 
-var tabla = document.getElementById('tablaRequisiciones');
+var tabla = document.getElementById('tablaRequisicionesPorAprobar');
 
 for (var i = 0; i < tabla.rows.length; i++)
     {
@@ -8,6 +8,7 @@ for (var i = 0; i < tabla.rows.length; i++)
         {
             rIndex = this.rowIndex;
             console.log(rIndex);
+            leerFila();
         }
     }
 
@@ -52,7 +53,7 @@ function emergente_Requisicion_Cerrar(){
 function emergente_AprobarRequisicion_Confirmacion_Abrir(){
     var modal = document.getElementById('modalAprobarRequisicion_Confirmacion');
     modal.style.display = 'block';
-
+    document.getElementById('AprobarRequisicion_IdRequisicion').value=numero;
     document.getElementById('numeroRequisicionConfirmacion').innerHTML = "¿Desea aprobar la solicitud número " +  numero + "?";
 }
 
