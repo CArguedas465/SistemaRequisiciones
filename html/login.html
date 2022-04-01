@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/Styles.css">
+    <link rel="stylesheet" href="../css/StyleLogin.css">
+    <script src="javascript/autenticacion.js " ></script>
 </head>
 <body>
     <h1>Sistema Requisiciones</h1>
     <div class="container">
-        <form id="login" name="login" method="post">
-            <div class="elemento Login_texto">
+        <form id="login" name="login" method="post" action="../scriptsPHP/autenticarUsuario.php" enctype="multipart/form-data">
+            <div class="elemento">
                 <label for="usuario">Usuario </label>
                 <input type="text" name="usuario" id="usuario" required="true">
             </div>
@@ -20,10 +21,10 @@
                 <input type="password" name="password" id="password" required="true">
             </div>
             <div class="elemento" id="Login_Ingresar"> 
-                <input type="submit" value="Ingresar">
+                <input id="ingresar" type="submit" value="Ingresar">
             </div>
             <div class="Login_Botones_Inferior">
-                <input id="Boton_Login_RecuperarContrasenia" type="button" value="Recuperar Contraseña">
+                <input id="Boton_Login_RecuperarContrasenia" onclick = "recuperacionContrasenia()" type="button" value="Recuperar Contraseña">
                 <br><br><input id="Boton_Login_Limpiar" type="reset" value="Limpiar">
             </div>
         </form>
