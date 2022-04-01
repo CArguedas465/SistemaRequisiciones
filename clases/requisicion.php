@@ -19,7 +19,7 @@
         }
 
         public function GetRequisicionesEnRevision($idusuario){
-            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, AsignadaA FROM requisicion WHERE Estado = 'En Revisión' AND Id_Empleado = '".$idusuario."';";
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, AsignadaA FROM requisicion WHERE Estado = 'EnRevision' AND Id_Empleado = '".$idusuario."';";
             $requisicionesEnviadasResult = $this->obj_conexion->query($sql);
 
             return $requisicionesEnviadasResult;

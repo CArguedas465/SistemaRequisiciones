@@ -1,0 +1,43 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient( to top, #012e33,#94c8d6, #eef2ed );
+}
+
+.container {
+    margin: 50px auto;
+    width: 400px;
+    padding: 30px;
+    background-color:#eef2ed ;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container .elemento label{
+    color: #012e33;
+}
+
+.container .elemento input{
+    width: 100%;
+    padding: 10px 0px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #012e33;
+    margin-bottom: 30px;
+
+}
+
+.container .elemento input[type = "submit"]{
+    border: none;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;    
+}
