@@ -78,6 +78,24 @@
             }
         }
 
+        public function GetIdJefe($nombreJefe, $apellido_1Jefe, $apellido_2Jefe){
+            $sql = "SELECT Id_Empleado FROM Empleado WHERE Nombre = '".$nombreJefe."' AND Apellido_1 = '".$apellido_1Jefe."' AND Apellido_2 = '".$apellido_2Jefe."';";
+            $resultadoIdJefe = $this->obj_conexion->query($sql);
+
+            $arrayResultadoIdJefe = $resultadoIdJefe -> fetch_assoc();
+
+            return $arrayResultadoIdJefe["Id_Empleado"];
+        }
+
+        public function GetRolEmpleado($nombreRol){
+            $sql = "SELECT IdRol FROM Rol WHERE NombreRol = '".$nombreRol."';";
+            $resultadoIdRolEmpleado = $this->obj_conexion->query($sql);
+
+            $arrayresultadoIdRolEmpleado = $resultadoIdRolEmpleado -> fetch_assoc();
+
+            return $arrayresultadoIdRolEmpleado["IdRol"];
+        }
+
 
         public function AgregarNuevoEmpleado($varIdEmpleado_EmpleadoNuevo, 
                                              $varCedula_EmpleadoNuevo,
@@ -101,9 +119,8 @@
                                                    $varRol_EmpleadoNuevo.",'".
                                                    $varIdusuario_EmpleadoNuevo."','".
                                                    $varContrasenna_EmpleadoNuevo."',".
-                                                   $varJefe_EmpleadoNuevo.",".  /*Consultar a Carlos por el nulable */
+                                                   $varJefe_EmpleadoNuevo.",". 
                                                    $varEstado_EmpleadoNuevo.");";
-            echo $sql;
             $agregarNuevoEmpleado = $this -> obj_conexion->query($sql);
             return $agregarNuevoEmpleado;
         }
@@ -119,6 +136,8 @@
             $sql = "UPDATE empleado SET idUsuario = '".$arrayResultadoIdUsuario["ID_USUARIO"]."' WHERE id_empleado = ".$varIdEmpleado_EmpleadoNuevo.";";
             echo $sql;
             $ingresoIdUsuario= $this -> obj_conexion->query($sql);
+
+            return $ingresoIdUsuario;
         }
     }
 ?>
