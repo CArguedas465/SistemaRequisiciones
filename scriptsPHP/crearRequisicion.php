@@ -23,14 +23,14 @@
     if ($resultadoCreacionRequisicion){
         if ($resultadoCrearEntradaHistorial){
             echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador".$jefeDirecto." para revisión.</h1><p>Redireccionando a la página de crear requisición...</p>";
-            //echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
+            echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
         } else {
             echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador".$jefeDirecto." para revisión. No se ha podido introducir un registro en el historial.</h1><p>Redireccionando a la página de crear requisición...</p>";
-            //echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
+            echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
         }
     } else {
         echo "<h1>Nueva requisición no ha podido ser procesada. Intentar más tarde. Redireccionando a la página de crear requisición...</p>";
-        //echo "<script>window.setTimeout(function() {window.location.href = '../html/porAprobar.php';}, 3000);</script>";
+        echo "<script>window.setTimeout(function() {window.location.href = '../html/porAprobar.php';}, 3000);</script>";
     }
 
     
