@@ -60,5 +60,28 @@
 
             return $resultadoDenegacion;
         }
+
+        public function GenerarIdRequisicion(){
+            while (true){
+                $numeroAleatorio = rand(10000, 99999);
+
+                $sql = "SELECT COUNT(*) As Conteo FROM Requisicion WHERE IdRequisicion = ".$numeroAleatorio.";";
+                $comprobacionNumeroAleatorio = $this->obj_conexion->query($sql);
+
+                $arrayComprobacionNumeroAleatorio = $comprobacionNumeroAleatorio -> fetch_assoc(); 
+
+                if ($arrayComprobacionNumeroAleatorio["Conteo"]=="0"){
+                    return $numeroAleatorio;
+                }
+            }  
+        }
+
+        public function CrearRequisicion($idrequisicion, $fecha, $producto, $costo, $idCreador, $detalle, $asignacion){
+            $sql = "INSERT INTO Requisicion VALUES (".$idrequisicion.", '".$fecha."', '".$producto."', ".$costo.", 'Enviada', '***', ".$idCreador.", '".$detalle."', ".$asignacion.");";
+            echo $sql; 
+            $resultadoCrearRequisicion = $this->obj_conexion -> query($sql);
+
+            return $resultadoCrearRequisicion;
+        }
     }
 ?>

@@ -14,7 +14,6 @@
             
             $sql = "INSERT INTO historial VALUES (".$idrequisicion.", SYSDATE(), ".$asignacion.", '".$estado."');";
 
-            echo $sql;
             $resultadoEntradaHistorial = $this->obj_conexion -> query($sql);
 
             return $resultadoEntradaHistorial;
