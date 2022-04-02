@@ -253,16 +253,6 @@
             </div>
         </div>
 
-        <!--Confirmación de agregación de empleado, final-->
-        <div id="modalAgregarEmpleado_ConfirmacionFinal" class="modal">
-            <div class="modal-content">
-                <h2>Confirmación</h2>
-                <p>Se ha agregado el cliente.</p>
-                <div>
-                    <button onclick="emergente_AgregarEmpleado_ConfirmacionFinal_Cerrar()" class="btn btn-success">Aceptar</button>
-                </div>
-            </div>
-        </div>
 
         <!--Confirmación de habilitación de empleado, botones-->
         <div id="modalHabilitarEmpleado_Confirmacion" class="modal">
