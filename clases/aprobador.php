@@ -24,8 +24,7 @@
 
         public function GetAprobadoresEnRango($rol){
             $sql = "SELECT Id_Empleado FROM empleado WHERE rol = ".$rol.";";
-            $mocksql = "SELECT Id_Empleado FROM empleado WHERE rol = 2";
-            $resultadoAprobadores = $this->obj_conexion->query($mocksql);
+            $resultadoAprobadores = $this->obj_conexion->query($sql);
             return $resultadoAprobadores;
         }
     }

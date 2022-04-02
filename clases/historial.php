@@ -1,5 +1,6 @@
 <?php 
-    include '../clases/conexion.php';
+    include_once '../clases/conexion.php';
+    
     class historial{
         var $obj_conexion;
 
@@ -9,8 +10,14 @@
             $this->obj_conexion = $conexion -> establecerConexion();
         }
 
-        public adicionarEntradaHistorial($estado, $idrequisicion, $aprobador){
-            $sql = "INSERT INTO historial VALUES (".$idrequisicion.", SYSDATE(), ".$aprobador.", ".$estado.");";
+        public function adicionarEntradaHistorial($estado, $idrequisicion, $asignacion){
+            
+            $sql = "INSERT INTO historial VALUES (".$idrequisicion.", SYSDATE(), ".$asignacion.", '".$estado."');";
+
+            echo $sql;
+            $resultadoEntradaHistorial = $this->obj_conexion -> query($sql);
+
+            return $resultadoEntradaHistorial;
         }
     }
 ?>
