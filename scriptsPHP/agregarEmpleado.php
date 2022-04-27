@@ -16,16 +16,22 @@
         $varJefe_EmpleadoNuevo = $_POST["agregarEmpleado_jefe"];
         $varEstado_EmpleadoNuevo = 1;
 
+        $arrayJefe = explode(' ', $varJefe_EmpleadoNuevo, 10);
+
+        $varJefeId = $empleado -> GetIdJefe($arrayJefe[0], $arrayJefe[1], $arrayJefe[2]);
+
+        $varRolId = $empleado -> GetRolEmpleado($varRol_EmpleadoNuevo);
+
         $ingresarNuevoEmpleado = $empleado -> AgregarNuevoEmpleado($varIdEmpleado_EmpleadoNuevo, 
         $varCedula_EmpleadoNuevo,
         $varNombre_EmpleadoNuevo, 
         $varPrimerApellido_EmpleadoNuevo, 
         $varSegundoApellido_EmpleadoNuevo,
         $varCorreoElectronico_EmpleadoNuevo, 
-        $varRol_EmpleadoNuevo, 
+        $varRolId, 
         $varIdusuario_EmpleadoNuevo,
         $varContrasenna_EmpleadoNuevo,
-        $varJefe_EmpleadoNuevo, 
+        $varJefeId, 
         $varEstado_EmpleadoNuevo);
 
         $generarIdUsuario = $empleado -> CrearIdUsuario($varIdEmpleado_EmpleadoNuevo);
@@ -35,13 +41,13 @@
 
             if ($generarIdUsuario){
                 echo "<h1>Empleado número ".$varIdEmpleado_EmpleadoNuevo." ha sido sido ingresado al sistema correctamente.</h1><p>Redireccionando a la página de administración...</p>";
-                //echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
+                echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
             } else {
                 echo "<h1>Empleado número ".$varIdEmpleado_EmpleadoNuevo." ha sido sido ingresado al sistema correctamente, pero no se generó el ID Usuario.</h1><p>Redireccionando a la página de administración...</p>";
-                //echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
+                echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
             }
         } else {
             echo "<h1>Empleado número ".$varIdEmpleado_EmpleadoNuevo." no ha podido ser adicionado. Intentar más tarde. Redireccionando a la página de administración...</p>";
-            //echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
+            echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
         }
 ?>      
