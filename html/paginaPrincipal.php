@@ -370,6 +370,20 @@
                 </div>
             </div>
         </div>
+
+        <!--Ventana modal enviar recordatorio-->
+        <div id="modalEnviarRecordatorio" class="modal">
+            <div class="modal-content">
+                <span id="closeButton" class="closeButton" onclick="emergente_ReenvioNotificacion_Cerrar()">&times;</span>
+                <form action="../scriptsPHP/repetirConfirmacion.php" style="text-align: center" method="POST">
+                    <input style="display: none" type="text" style="display:none" name="requisicionARecordar" id="requisicion_ARecordar">
+                    <input style="display: none" type="text" style="display:none" name="tipoRecordatorio" id="tipo_Recordatorio">
+                    <input class= "btn btn-success" type="submit" value="Reenviar estado solicitud">
+                    <br><br>
+                    <p id="mensajeRecordatorio"></p>
+                </form>
+            </div>
+        </div>
     </section>
 </body>
 </html>
