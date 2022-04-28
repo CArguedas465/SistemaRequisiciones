@@ -65,6 +65,8 @@ function requisicionesEnviadasSeleccion(){
         emergente_ImagenProducto_Abrir('tablaRequisicionesEnviadas', requisicionEnviada_Fila, requisicionEnviada_Columna);
     } else if (requisicionEnviada_Columna==5){
         emergente_DetalleProducto_Abrir('tablaRequisicionesEnviadas', requisicionEnviada_Fila, requisicionEnviada_Columna);
+    } else {
+        emergente_ReenvioNotificacion_Abrir(requisicionEnviada_Fila,'Enviadas');
     }
 }
 
@@ -73,6 +75,8 @@ function requisicionesEnRevisionSeleccion(){
         emergente_ImagenProducto_Abrir('tablaRequisicionesEnRevision', requisicionEnRevision_Fila, requisicionEnRevision_Columna);
     } else if (requisicionEnRevision_Columna==5){
         emergente_DetalleProducto_Abrir('tablaRequisicionesEnRevision', requisicionEnRevision_Fila, requisicionEnRevision_Columna);
+    } else {
+        emergente_ReenvioNotificacion_Abrir(requisicionEnRevision_Fila, 'EnRevision');
     }
 }
 
@@ -141,5 +145,32 @@ function emergente_BusquedaEspecifica_Abrir(){
 
 function emergente_BusquedaEspecifica_Cerrar(){
     var modal = document.getElementById('modalBusquedaEspecifica');
+    modal.style.display = 'none';
+}
+
+function emergente_ReenvioNotificacion_Abrir(filaSeleccionada, tipoRequisicion){
+
+    var mensaje;
+
+    if (tipoRequisicion=='Enviadas'){
+        var tabla = document.getElementById('tablaRequisicionesEnviadas');
+        mensaje = "Se notificará nuevamente al jefe aprobador del cambio de estado a 'Enviada' de la requisición #"+tabla.rows.item(filaSeleccionada).cells.item(0).textContent+". Favor no sobrenotificar, ya que esto puede llevar a acciones disciplinarias importantes.";
+        
+    } else {
+        var tabla = document.getElementById('tablaRequisicionesEnRevision');
+        mensaje = "Se notificará nuevamente al aprobador financiero del cambio de estado a 'En Revisión' de la requisición #"+tabla.rows.item(filaSeleccionada).cells.item(0).textContent+". Favor no sobrenotificar, ya que esto puede llevar a acciones disciplinarias importantes.";
+    }
+    
+    document.getElementById('requisicion_ARecordar').value = tabla.rows.item(filaSeleccionada).cells.item(0).textContent;
+    document.getElementById('mensajeRecordatorio').innerHTML = mensaje;
+    document.getElementById('tipo_Recordatorio').value = tipoRequisicion;
+
+    var modal = document.getElementById('modalEnviarRecordatorio');
+    modal.style.display = 'block';
+}
+
+function emergente_ReenvioNotificacion_Cerrar(filaSeleccionada, tipoRequisicion){
+
+    var modal = document.getElementById('modalEnviarRecordatorio');
     modal.style.display = 'none';
 }

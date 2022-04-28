@@ -38,5 +38,21 @@
 
             return $requisicionesEnviadasResult;
         }
+
+        public function GetRequisicion($idRequisicion){
+            $sql = "SELECT *
+                    FROM requisicion
+                    WHERE IdRequisicion = ".$idRequisicion.";";
+
+            return $this-> obj_conexion -> query($sql);
+        }
+
+        public function GetDatos_EncargadoRequisicion($idEncargado){
+            $sql = "SELECT *
+                    FROM empleado
+                    WHERE Id_Empleado = ".$idEncargado.";";
+
+            return $this->obj_conexion -> query($sql);
+        }
     }
 ?>
