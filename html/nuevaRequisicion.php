@@ -80,19 +80,23 @@
         
         <h2>Introducir la información requerida</h2>
         <form>
-            <label for="fecha">Fecha de la solicitud</label>
-            <input type="text" id="fecha" name="fecha" readonly disabled>
-            <label for="idempleado">IdEmpleado</label>
-            <input type="text" id="idempleado" name="idempleado" readonly disabled>
-            <label for="jefe">Jefe Directo</label>
-            <input type="text" id="jefe" name="jefe" readonly disabled>
+            <?php 
+                $sql = "SELECT Jefe FROM empleado WHERE Id_Empleado = ".$_SESSION["idusuario"].";";
+                $jefeDirectoResultado = $conexion -> query($sql);
+
+                $arrayJefeDirecto = $jefeDirectoResultado -> fetch_assoc();
+
+                echo '<label for="fecha">Fecha de la solicitud</label><input type="text" id="fecha" name="fecha" value="'.date('Y-m-d').'" readonly disabled>'.
+                '<label for="idempleado">IdEmpleado</label><input type="text" id="idempleado" name="idempleado" value="'.$_SESSION["idusuario"].'" readonly disabled>'.
+                '<label for="jefe">Jefe Directo</label><input type="text" id="jefe" name="jefe" value="'.$arrayJefeDirecto["Jefe"].'" readonly disabled>';
+            ?>
             <br>
             <label for="producto">Nombre del producto a solicitar</label>
             <input type="text" id="producto" name="producto">
             <label for="costo">Costo aproximado</label>
             <input type="text" id="costo" name="costo">
             <label for="imagen">Adicionar Imagen</label>
-            <input type="file" id="imagen" name="imagen">
+            <input type="file" id="imagen" name="imagen" disabled>
             <br>
             <label for="detalle">Detalle</label>
             <textarea name="detalle" id="detalle" cols="150" rows="10"></textarea>
@@ -109,10 +113,21 @@
                 <span id="closeButton" class="closeButton" onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()">&times;</span>
                 <h2>Aprobación</h2>
                 <p>¿Seguro que desea crear la requisición con la información introducida?</p>
+                <form action="../scriptsPHP/crearRequisicion.php" method="post">
+                    <input style="display: none" type="text" id="CrearRequisicion_FechaSolicitud" name="CrearRequisicion_FechaSolicitud"> 
+                    <input style="display: none" type="text" id="CrearRequisicion_EmpleadoCreador" name="CrearRequisicion_EmpleadoCreador"> 
+                    <input style="display: none" type="text" id="CrearRequisicion_JefeDirecto" name="CrearRequisicion_JefeDirecto"> 
+                    <input style="display: none" type="text" id="CrearRequisicion_NombreProducto" name="CrearRequisicion_NombreProducto"> 
+                    <input style="display: none" type="text" id="CrearRequisicion_CostoAproximado" name="CrearRequisicion_CostoAproximado"> 
+                    <input style="display: none" type="text" id="CrearRequisicion_DetalleEmpleado" name="CrearRequisicion_DetalleEmpleado"> 
+                    <input class="btn btn-secondary" type="button" value="Volver" onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()">
+                    <input class="btn btn-success" type="submit" value="Aceptar">
+                </form>
+                <!--
                 <div>
                     <button onclick="emergente_RealizarSolicitud_ConfirmacionFinal_Abrir()" class="btn btn-success">Aceptar</button>
                     <button onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()" class="btn btn-secondary">Volver</button>
-                </div>
+                </div>-->
             </div>
         </div>
 

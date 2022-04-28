@@ -31,7 +31,7 @@ function leerFila(){
     document.getElementById('empleado').value = empleado;
     document.getElementById('producto').value = producto;
     document.getElementById('costo').value = costo;
-    document.getElementById('detalle').value = detalle;
+    document.getElementById('detalleEmpleado').value = detalle;
 
     emergente_Requisicion_Abrir();
 
@@ -51,8 +51,10 @@ function emergente_Requisicion_Cerrar(){
 }
 
 function emergente_AprobarRequisicion_Confirmacion_Abrir(){
+    
     var modal = document.getElementById('modalAprobarRequisicion_Confirmacion');
     modal.style.display = 'block';
+    document.getElementById('AprobarRequisicion_DetalleAprobador').value = document.getElementById('detalleAprobador').value;;
     document.getElementById('AprobarRequisicion_IdRequisicion').value=numero;
     document.getElementById('numeroRequisicionConfirmacion').innerHTML = "¿Desea aprobar la solicitud número " +  numero + "?";
 }
@@ -81,9 +83,12 @@ function emergente_AprobarRequisicion_ConfirmacionFinal_Cerrar(){
 /*-----------*/ 
 
 function emergente_DenegarRequisicion_Confirmacion_Abrir(){
+
     var modal = document.getElementById('modalDenegarRequisicion_Confirmacion');
     modal.style.display = 'block';
 
+    document.getElementById('DenegarRequisicion_IdRequisicion').value = numero;
+    document.getElementById('DenegarRequisicion_DetalleAprobador').value = document.getElementById('detalleAprobador').value;
     document.getElementById('numeroRequisicionDenegacion').innerHTML = "¿Desea denegar la solicitud número " +  numero + "?";
 }
 

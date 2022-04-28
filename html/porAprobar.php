@@ -104,36 +104,20 @@
                     <th>Imagen</th>
                     <th>IdEmpleado</th>
                     <th>Detalle</th>
-                </thead>
-                
-
-
-
-
-
+                </thead>  
                 <tbody> <!-- Falta asignar JS -->
 
                     <?php
                         include '../clases/requisicion_Nicolas.php';
                         $requisicion = new requisicion_Nicolas();
                         $resultadoRequisicionesPorAprobar = $requisicion -> GetRequisicionesPorAprobar ($_SESSION["idusuario"]);
-
                         while ($row = $resultadoRequisicionesPorAprobar -> fetch_assoc()){
                             echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Estado"]."</td><td>".$row["Imagen"]."</td><td>".$row["Id_Empleado"]."</td><td>".$row["Detalle"]."</td></tr>";
                         }
                     ?>
-
                 </tbody>
             </table>
         </div>
-
-
-
-
-
-
-
-
 
         <!--Ventanas modales-->
 
@@ -156,10 +140,10 @@
                     <input type="text" id="imagen" name="imagen" value="Click para ver imagen" onclick="emergente_ImagenProducto_Abrir()" readonly>
                     <br><br>
                     <label for="detalle">Detalle</label>
-                    <textarea cols="150" rows="3" id="detalle" name="detalle" readonly disabled></textarea>
+                    <textarea cols="150" rows="3" id="detalleEmpleado" name="detalleEmpleado" readonly disabled></textarea>
                     <br><br>
                     <label for="detalle">Notas del aprobador</label>
-                    <textarea cols="150" rows="3" id="detalle" name="detalle"></textarea>
+                    <textarea cols="150" rows="3" id="detalleAprobador" name="detalleAprobador"></textarea>
                 </form>
                 
                 <br>
@@ -183,7 +167,8 @@
                         echo '<input style="display: none;" type="text" id="AprobarRequisicion_IdRequisicion" name="AprobarRequisicion_IdRequisicion">'.
                         '<input style="display: none;" type="text" id="AprobarRequisicion_Rol" name="AprobarRequisicion_Rol" value="'.$_SESSION["RolUsuario"].'">'.
                         '<input style="display: none;" type="text" id="AprobarRequisicion_RangoInferior" name="AprobarRequisicion_RangoInferior" value="'.$_SESSION["RangoInferior"].'">'.
-                        '<input style="display: none;" type="text" id="AprobarRequisicion_RangoSuperior" name="AprobarRequisicion_RangoSuperior" value="'.$_SESSION["RangoSuperior"].'">';
+                        '<input style="display: none;" type="text" id="AprobarRequisicion_RangoSuperior" name="AprobarRequisicion_RangoSuperior" value="'.$_SESSION["RangoSuperior"].'">'.
+                        '<input style="display: none;" type="text" id="AprobarRequisicion_DetalleAprobador" name="AprobarRequisicion_DetalleAprobador">';
                     ?>
                     
                     <!--
@@ -210,12 +195,19 @@
         <div id="modalDenegarRequisicion_Confirmacion" class="modal">
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_DenegarRequisicion_Confirmacion_Cerrar()">&times;</span>
-                <p>Aprobación</p>
+                <p>Denegación</p>
                 <p id="numeroRequisicionDenegacion"></p>
+                <form action="../scriptsPHP/denegarRequisicion.php" method="post">
+                    <input style="display: none;" type="text" id="DenegarRequisicion_IdRequisicion" name="DenegarRequisicion_IdRequisicion">
+                    <input style="display: none;" type="text" id="DenegarRequisicion_DetalleAprobador" name="DenegarRequisicion_DetalleAprobador">
+                    <input class="btn btn-success" type="submit" value="Aceptar">
+                    <input class="btn btn-secondary" type="button" value="Volver" onclick="emergente_DenegarRequisicion_Confirmacion_Cerrar()">
+                </form>
+                <!--
                 <div>
                     <button onclick="emergente_DenegarRequisicion_ConfirmacionFinal_Abrir()">Aceptar</button>
                     <button onclick="emergente_DenegarRequisicion_Confirmacion_Cerrar()">Volver</button>
-                </div>
+                </div>-->
             </div>
         </div>
 
