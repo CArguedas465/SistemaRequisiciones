@@ -1,5 +1,5 @@
 <?php
-    include 'conexion.php';
+    include_once 'conexion.php';
 
     class requisicion{
 
@@ -51,6 +51,54 @@
             $sql = "SELECT *
                     FROM empleado
                     WHERE Id_Empleado = ".$idEncargado.";";
+
+            return $this->obj_conexion -> query($sql);
+        }
+
+        public function GetRequisicionesDeEmpleado($idSolicitante)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante.";";
+
+            return $this->obj_conexion->query($sql);
+        }
+
+        public function GetRequisicionesPorNombre($idSolicitante, $nombreAprobador)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante." AND emp.Nombre = '".$nombreAprobador."';";
+                    
+            return $this -> obj_conexion -> query($sql);
+        }
+
+        public function GetRequisicionesPorFecha($idSolicitante, $fechaInferior, $fechaSuperior)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante." AND (req.Fecha_Solicitud BETWEEN '".$fechaInferior."' AND '".$fechaSuperior."');";
+
+            return $this -> obj_conexion -> query($sql);
+        }
+
+        public function GetRequisicionPorRangoDeFechas_YTipoDeReporte($rango, $tipoReporte)
+        {
+            if ($tipoReporte == 'Enviada')
+            {
+                $sql = "SELECT * 
+                    FROM requisicion
+                    WHERE (fecha_solicitud BETWEEN DATE_ADD(SYSDATE(), INTERVAL -".$rango." MONTH) AND SYSDATE());";
+            } 
+            else
+            {
+                $sql = "SELECT * 
+                        FROM requisicion
+                        WHERE (fecha_solicitud BETWEEN DATE_ADD(SYSDATE(), INTERVAL -".$rango." MONTH) AND SYSDATE()) AND Estado = '".$tipoReporte."';";
+            }
 
             return $this->obj_conexion -> query($sql);
         }

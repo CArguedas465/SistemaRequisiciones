@@ -78,7 +78,6 @@
 
         public function CrearRequisicion($idrequisicion, $fecha, $producto, $costo, $idCreador, $detalle, $asignacion){
             $sql = "INSERT INTO Requisicion VALUES (".$idrequisicion.", '".$fecha."', '".$producto."', ".$costo.", 'Enviada', '***', ".$idCreador.", '".$detalle."', ".$asignacion.");";
-            echo $sql; 
             $resultadoCrearRequisicion = $this->obj_conexion -> query($sql);
 
             return $resultadoCrearRequisicion;

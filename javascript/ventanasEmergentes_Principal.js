@@ -138,14 +138,49 @@ function emergente_DetalleProducto_Cerrar(){
     modal.style.display = 'none';
 }
 
+function validacionBusqueda(){
+    var busqueda = document.getElementById('busqueda').value;
+    var criterio = document.getElementById('criterio').value;
+
+    if (criterio=="N/A")
+    {
+        alert("Para realizar la búsqueda, se debe elegir un criterio de búsqueda.");
+        return;
+    }
+
+    if (criterio=='nombre' && busqueda=="")
+    {
+        alert("Si se quiere buscar nombre, se debe especificar una búsqueda");
+        return;
+    }
+
+    var fechaInferior = document.getElementById('_inferior').value;
+    var fechaSuperior = document.getElementById('_superior').value;
+
+    if (criterio=='fecha' && (fechaInferior=="" || fechaSuperior=="")){
+        alert("Si se quiere buscar por rango de fechas, se debe especificar una fecha mínima y una máxima");
+        return;
+    }
+
+    var form = document.getElementById('formularioDeBusqueda');
+    form.submit(); 
+}
+
+//
 function emergente_BusquedaEspecifica_Abrir(){
     var modal = document.getElementById('modalBusquedaEspecifica');
     modal.style.display = 'block';
 }
+//
 
 function emergente_BusquedaEspecifica_Cerrar(){
+    document.getElementById('busqueda').value = ''; 
+    document.getElementById('criterio').value = ''; 
+    document.getElementById('_inferior').value = ''; 
+    document.getElementById('_superior').value = ''; 
     var modal = document.getElementById('modalBusquedaEspecifica');
     modal.style.display = 'none';
+    
 }
 
 function emergente_ReenvioNotificacion_Abrir(filaSeleccionada, tipoRequisicion){
@@ -169,7 +204,7 @@ function emergente_ReenvioNotificacion_Abrir(filaSeleccionada, tipoRequisicion){
     modal.style.display = 'block';
 }
 
-function emergente_ReenvioNotificacion_Cerrar(filaSeleccionada, tipoRequisicion){
+function emergente_ReenvioNotificacion_Cerrar(){
 
     var modal = document.getElementById('modalEnviarRecordatorio');
     modal.style.display = 'none';

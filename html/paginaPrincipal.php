@@ -273,11 +273,34 @@
         </div>
 
         <!--Ventana modal de búsqueda-->
-        <div id="modalBusquedaEspecifica" class="modal" style="z-index: 1;">
+        <?php
+            $modoBusqueda = $_SESSION["modoBusqueda"];
+            if ($modoBusqueda===0 || $modoBusqueda===1)
+            {
+                echo 
+                '<div id="modalBusquedaEspecifica" class="modal" style="z-index: 1; display: block;">
+                '
+                ;
+            }
+            else if ($modoBusqueda===-1)
+            {
+                echo 
+                '<div id="modalBusquedaEspecifica" class="modal" style="z-index: 1; display: none">'
+                ;
+            }
+            $_SESSION["modoBusqueda"] = '';
+            
+        ?>
+        <div id="modalBusquedaEspecifica" class="modal" style="z-index: 1; display:block;">
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_BusquedaEspecifica_Cerrar()">&times;</span>
                 <h2 class="h4">Búsqueda Específica</h2>
-                <form>
+                <form method="POST" action="../scriptsPHP/busquedaRequisicion.php" id="formularioDeBusqueda">
+                    <?php
+                        echo
+                        '<input type="text" name="usuarioEnSesion" style="display: none" value="'.$_SESSION["idusuario"].'"/>'
+                        ;
+                    ?>
                     <label for="busqueda">Búsqueda</label>
                     <input type="text" id="busqueda" name="busqueda">
                     <label for="criterio">Criterio de Búsqueda</label>
@@ -291,10 +314,10 @@
                     <br>
                     <div id="rango" style="text-align: left;">
                         <label for="inferior">Desde</label>
-                        <input type="date" name="inferior" id="inferior">
+                        <input type="date" name="inferior" id="_inferior">
                         <label for="superior">Hasta</label>
-                        <input type="date" name="superior" id="superior">
-                        <input type="button" value="Buscar" class="btn btn-success">
+                        <input type="date" name="superior" id="_superior">
+                        <input type="button" value="Buscar" class="btn btn-success" onclick="validacionBusqueda()">
                     </div>
                     <br>
                     <div class="scrollableTableDiv scrollableDivBusqueda">
@@ -307,40 +330,87 @@
                                 <th>Imagen</th>
                                 <th>Detalle</th>
                                 <th>Asignada A</th>
+                                <th>Estado</th>
                             </thead>
-                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">      
-                                <tr>
-                                    <td>x</td>
-                                    <td>x</td>
-                                    <td>x</td>
-                                    <td>x</td>
-                                    <td>x</td>
-                                    <td>x</td>
-                                    <td>x</td>
-                                </tr>
-                                <tr>
-                                    <td>y</td>
-                                    <td>y</td>
-                                    <td>y</td>
-                                    <td>y</td>
-                                    <td>y</td>
-                                    <td>y</td>
-                                    <td>y</td>
-                                </tr>
-                                <tr>
-                                    <td>z</td>
-                                    <td>z</td>
-                                    <td>z</td>
-                                    <td>z</td>
-                                    <td>z</td>
-                                    <td>z</td>
-                                    <td>z</td>
-                                </tr>
+                            <tbody onclick="requisicionesBusquedaGeneralSeleccion()">
+                                <?php
+                                    include_once '../clases/requisicion.php';
+
+                                    if ($modoBusqueda===0 || $modoBusqueda===1)
+                                    {
+                                        if($modoBusqueda==0)
+                                        {
+                                            $resultadoPorNombre = $_SESSION["resultadoBusqueda"];
+
+                                            foreach ($resultadoPorNombre as $requi)
+                                            {
+                                                echo 
+                                                '<tr>
+                                                    <td>'.$requi[0].'</td>
+                                                    <td>'.$requi[1].'</td>
+                                                    <td>'.$requi[2].'</td>
+                                                    <td>'.$requi[3].'</td>
+                                                    <td>'.$requi[4].'</td>
+                                                    <td>'.$requi[5].'</td>
+                                                    <td>'.$requi[6].'</td>
+                                                    <td>'.$requi[7].'</td>
+                                                </tr>'
+                                                ;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            $resultadoPorFecha = $_SESSION["resultadoBusqueda"];
+                                            
+                                            foreach ($resultadoPorFecha as $requi)
+                                            {
+                                                echo 
+                                                '<tr>
+                                                    <td>'.$requi[0].'</td>
+                                                    <td>'.$requi[1].'</td>
+                                                    <td>'.$requi[2].'</td>
+                                                    <td>'.$requi[3].'</td>
+                                                    <td>'.$requi[4].'</td>
+                                                    <td>'.$requi[5].'</td>
+                                                    <td>'.$requi[6].'</td>
+                                                    <td>'.$requi[7].'</td>
+                                                </tr>'
+                                                ;
+                                            }
+                                            
+                                        }
+                                    }
+                                    else if ($modoBusqueda===-1)
+                                    {
+                                        $requisicion = new requisicion(); 
+
+                                        $resultadoRequisicionesEmpleado = $requisicion -> GetRequisicionesDeEmpleado($_SESSION["idusuario"]);
+
+                                        while ($row = $resultadoRequisicionesEmpleado -> fetch_assoc())
+                                        {
+                                            echo 
+                                            '<tr>
+                                                <td>'.$row["IdRequisicion"].'</td>
+                                                <td>'.$row["Fecha_Solicitud"].'</td>
+                                                <td>'.$row["Producto"].'</td>
+                                                <td>'.$row["Costo"].'</td>
+                                                <td>'.$row["Imagen"].'</td>
+                                                <td>'.$row["Detalle"].'</td>
+                                                <td>'.$row["AsignadaA"].'</td>
+                                                <td>'.$row["Estado"].'</td>
+                                            </tr>'
+                                            ;
+                                        }
+                                    }
+                                    $_SESSION["resultadoBusqueda"] = -1; 
+                                    $_SESSION["modoBusqueda"] = -1;
+                                ?>      
                             </tbody>
                         </table>
                     </div>
                 </form>
             </div>
+        </div>
         </div>
 
         <!--Ventana modal opciones de correo-->
