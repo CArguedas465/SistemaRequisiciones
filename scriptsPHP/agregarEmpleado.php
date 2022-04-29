@@ -1,6 +1,7 @@
 <?php
     include '../clases/empleado.php';
-        $empleado = new empleado();
+
+    $empleado = new empleado();
 
         $generarIdEmpleadoNuevo = $empleado -> ComprobacionNuevoIdEmpleado();
 
@@ -16,11 +17,11 @@
         $varJefe_EmpleadoNuevo = $_POST["agregarEmpleado_jefe"];
         $varEstado_EmpleadoNuevo = 1;
 
+
         $arrayJefe = explode(' ', $varJefe_EmpleadoNuevo, 10);
-
         $varJefeId = $empleado -> GetIdJefe($arrayJefe[0], $arrayJefe[1], $arrayJefe[2]);
-
         $varRolId = $empleado -> GetRolEmpleado($varRol_EmpleadoNuevo);
+
 
         $ingresarNuevoEmpleado = $empleado -> AgregarNuevoEmpleado($varIdEmpleado_EmpleadoNuevo, 
         $varCedula_EmpleadoNuevo,
@@ -33,6 +34,7 @@
         $varContrasenna_EmpleadoNuevo,
         $varJefeId, 
         $varEstado_EmpleadoNuevo);
+
 
         $generarIdUsuario = $empleado -> CrearIdUsuario($varIdEmpleado_EmpleadoNuevo);
 
@@ -50,4 +52,5 @@
             echo "<h1>Empleado número ".$varIdEmpleado_EmpleadoNuevo." no ha podido ser adicionado. Intentar más tarde. Redireccionando a la página de administración...</p>";
             echo "<script>window.setTimeout(function() {window.location.href = '../html/admin.php';}, 3000);</script>";
         }
+        
 ?>      

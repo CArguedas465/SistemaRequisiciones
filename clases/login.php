@@ -9,19 +9,25 @@
             $this->conexion = mysqli_connect('localhost', 'root', '', 'sistema_requisiciones');
         }
 
-        public function validar($usuario, $contra)
-        {
-            $sql = "SELECT COUNT(*) FROM Empleado WHERE IdUsuario = '".$usuario."' AND Contrasenna = '".$contra."';";
-            $resultado = $this -> conexion -> query($sql);
 
-            if (!$resultado){
-                trigger_error('Invalid query:'.$resultado->error);
+        
+        public function validar($usuario, $contra){
+            
+            $sql = "SELECT * FROM empleado WHERE IdUsuario = '".$usuario."';";
+            $resultado = $this-> conexion -> query($sql);
+            $arrayResultado = $resultado -> fetch_assoc();
+
+
+            if ($usuario == $arrayResultado["IdUsuario"] && $contra == $arrayResultado["Contrasenna"])
+            {
+                return true;
             }
-
-            $array = $resultado -> fetch_assoc();
-
-            return $array["COUNT(*)"];
+            else
+            {
+                return false;
+            }
         }
+    
     }
 
     

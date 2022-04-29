@@ -85,12 +85,14 @@
                 <span id="closeButton" class="closeButton" onclick="emergente_Correo_Cerrar()">&times;</span>
                 <h2>Cambiar correo electrónico</h2>
                 <h3>Nuevo correo:</h3>
-                <input type="text" id="nuevoCorreoElectronico">
+                <form action="../scriptsPHP/cambiarCorreo.php" method="post">
+                    <input type="text" name="NuevoCorreo" id="nuevoCorreoElectronico">
+                
                 <p>*La operación de cambio de correo es final. Favor asegurarse 
                     del cambio antes de seleccionar "Cambiar correo".</p>
-                <div>
+                
                     <button>Cambiar Correo</button>
-                </div>
+                </form>
             </div>
         </div>
 
