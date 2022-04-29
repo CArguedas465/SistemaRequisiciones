@@ -278,7 +278,8 @@
             if ($modoBusqueda===0 || $modoBusqueda===1)
             {
                 echo 
-                '<div id="modalBusquedaEspecifica" class="modal" style="z-index: 1; display: block;">'
+                '<div id="modalBusquedaEspecifica" class="modal" style="z-index: 1; display: block;">
+                '
                 ;
             }
             else if ($modoBusqueda===-1)
@@ -409,6 +410,7 @@
                     </div>
                 </form>
             </div>
+        </div>
         </div>
 
         <!--Ventana modal opciones de correo-->

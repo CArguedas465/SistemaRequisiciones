@@ -1,5 +1,5 @@
 <?php
-    include 'conexion.php';
+    include_once 'conexion.php';
 
     class requisicion{
 
@@ -83,6 +83,24 @@
                     WHERE req.Id_empleado = ".$idSolicitante." AND (req.Fecha_Solicitud BETWEEN '".$fechaInferior."' AND '".$fechaSuperior."');";
 
             return $this -> obj_conexion -> query($sql);
+        }
+
+        public function GetRequisicionPorRangoDeFechas_YTipoDeReporte($rango, $tipoReporte)
+        {
+            if ($tipoReporte == 'Enviada')
+            {
+                $sql = "SELECT * 
+                    FROM requisicion
+                    WHERE (fecha_solicitud BETWEEN DATE_ADD(SYSDATE(), INTERVAL -".$rango." MONTH) AND SYSDATE());";
+            } 
+            else
+            {
+                $sql = "SELECT * 
+                        FROM requisicion
+                        WHERE (fecha_solicitud BETWEEN DATE_ADD(SYSDATE(), INTERVAL -".$rango." MONTH) AND SYSDATE()) AND Estado = '".$tipoReporte."';";
+            }
+
+            return $this->obj_conexion -> query($sql);
         }
     }
 ?>

@@ -73,9 +73,34 @@
     </nav>
     <section>
         <h1 class="h3">
-            Reportes
+            Generación de Reportes
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
         </h1>
+
+        <form method="POST" action="../scriptsPHP/generarReportes.php" style="text-align: center; margin: 350px 0px" id="formularioReportes">
+            <label for="_TipoReporte">Tipo Reporte</label>
+            <?php
+                echo
+                '<input style="display: none" type="text" name="usuario" value="'.$_SESSION["idusuario"].'">'
+                ;
+            ?>
+            <select name="TipoReporte" id="_TipoReporte">
+                <option value="N/A">Elegir</option>
+                <option value="Enviada">Requisiciones Recibidas</option>
+                <option value="Aprobada">Requisiciones Aprobadas</option>
+                <option value="Rechazada">Requisiciones Rechazadas</option>
+            </select>
+            <label for="_RangoReporte">Rango de fechas</label>
+            <select name="rangoReporte" id="_RangoReporte">
+                <option value="N/A">Elegir</option>
+                <option value="3">Últimos tres meses</option>
+                <option value="6">Últimos seis meses</option>
+                <option value="12">Últimos doce meses</option>
+            </select>
+            <br><br>
+            <p>El reporte será enviado al correo asociado a su cuenta.</p>
+            <input type="button" value="¡Generar Reporte!" class="btn btn-success" onclick="validacionReporte()">
+        </form>
 
         <!--Ventanas Emergentes-->
 
@@ -110,3 +135,4 @@
 </body>
 </html>
 <script src="../javascript/ventanasEmergentes_General.js"></script>
+<script src="../javascript/reportes.js"></script>

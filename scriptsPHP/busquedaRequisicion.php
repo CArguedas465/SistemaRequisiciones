@@ -18,6 +18,15 @@
         $resultado = $requisicion -> GetRequisicionesPorNombre($usuarioEnSesion, $busqueda);
         $cont = 0;
         $resultadoNombreArray = array();
+        $validacionLargo = $resultado -> fetch_assoc();
+
+        if (sizeOf($validacionLargo)==0)
+        {
+            $_SESSION["resultadoBusqueda"] = array(array('No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados'));
+            echo "<script>window.setTimeout(function() {window.location.href = '../html/paginaPrincipal.php';}, 0);</script>";
+            return;
+        }
+
         while ($row = $resultado -> fetch_assoc())
         {
             $resultadosNombreArray[$cont] = array($row["IdRequisicion"], $row["Fecha_Solicitud"], $row["Producto"], $row["Costo"], $row["Imagen"], $row["Detalle"], $row["AsignadaA"], $row["Estado"]);
@@ -31,6 +40,15 @@
         $resultado = $requisicion -> GetRequisicionesPorFecha($usuarioEnSesion, $inferior, $superior);
         $cont = 0;
         $resultadoNombreArray = array();
+        $validacionLargo = $resultado -> fetch_assoc();
+
+        if (sizeOf($validacionLargo)==0)
+        {
+            $_SESSION["resultadoBusqueda"] = array(array('No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados', 'No resultados'));
+            echo "<script>window.setTimeout(function() {window.location.href = '../html/paginaPrincipal.php';}, 0);</script>";
+            return;
+        }
+
         while ($row = $resultado -> fetch_assoc())
         {
             $resultadosNombreArray[$cont] = array($row["IdRequisicion"], $row["Fecha_Solicitud"], $row["Producto"], $row["Costo"], $row["Imagen"], $row["Detalle"], $row["AsignadaA"], $row["Estado"]);
