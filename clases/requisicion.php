@@ -54,5 +54,35 @@
 
             return $this->obj_conexion -> query($sql);
         }
+
+        public function GetRequisicionesDeEmpleado($idSolicitante)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante.";";
+
+            return $this->obj_conexion->query($sql);
+        }
+
+        public function GetRequisicionesPorNombre($idSolicitante, $nombreAprobador)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante." AND emp.Nombre = '".$nombreAprobador."';";
+                    
+            return $this -> obj_conexion -> query($sql);
+        }
+
+        public function GetRequisicionesPorFecha($idSolicitante, $fechaInferior, $fechaSuperior)
+        {
+            $sql = "SELECT IdRequisicion, Fecha_Solicitud, Producto, Costo, Imagen, Detalle, CONCAT(emp.Nombre, ' ', emp.Apellido_1, ' ' , emp.Apellido_2) AS 'AsignadaA', req.Estado 
+                    FROM requisicion req 
+                    JOIN empleado emp ON (emp.Id_Empleado = req.AsignadaA) 
+                    WHERE req.Id_empleado = ".$idSolicitante." AND (req.Fecha_Solicitud BETWEEN '".$fechaInferior."' AND '".$fechaSuperior."');";
+
+            return $this -> obj_conexion -> query($sql);
+        }
     }
 ?>

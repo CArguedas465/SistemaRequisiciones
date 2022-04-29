@@ -1,5 +1,8 @@
 <?php
     include '../clases/login.php';
+    session_start();
+    $_SESSION["modoBusqueda"] = -1;
+    $_SESSION["resultadoBusqueda"] = -1;
     
     if ((!empty($_POST["usuario"])) and (!empty($_POST["password"]))){
         
@@ -14,7 +17,6 @@
         } 
         else
         {
-            session_start();
             $_SESSION['username'] = $usuario;
             echo '<script> alert("Login correcto."); </script>';
             echo "<script>window.setTimeout(function() {window.location.href = '../html/paginaPrincipal.php';}, 50);</script>";
