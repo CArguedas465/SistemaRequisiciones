@@ -210,6 +210,7 @@
                 <option value="Aprobador Financiero 1">Aprobador Financiero 1</option>
                 <option value="Aprobador Financiero 2">Aprobador Financiero 2</option>
                 <option value="Aprobador Financiero 3">Aprobador Financiero 3</option>
+                <option value="Administrador">Administrador</option>
             </select>
             <label for="jefe">Jefe: </label>
             <select name="jefe" id="jefe">
@@ -284,18 +285,20 @@
             </div>
         </div>
 
-        <!--Ventana modal para opciones de correo electrónico-->
+        <!--Ventana modal para opciones de correo electrónico---------------------------------------->
         <div id="modalCorreo" class="modal">
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_Correo_Cerrar()">&times;</span>
                 <h2>Cambiar correo electrónico</h2>
                 <h3>Nuevo correo:</h3>
-                <input type="text" id="nuevoCorreoElectronico">
+                <form action="../scriptsPHP/cambiarCorreo.php" method="post">
+                    <input type="text" name="NuevoCorreo" id="nuevoCorreoElectronico">
+                
                 <p>*La operación de cambio de correo es final. Favor asegurarse 
                     del cambio antes de seleccionar "Cambiar correo".</p>
-                <div>
+                
                     <button>Cambiar Correo</button>
-                </div>
+                </form>
             </div>
         </div>
 

@@ -108,7 +108,10 @@
                                              $varContrasenna_EmpleadoNuevo,
                                              $varJefe_EmpleadoNuevo, 
                                              $varEstado_EmpleadoNuevo){
-            
+
+            /* Encriptado de contraseña Inicio */
+            $varContrasenna_Encriptada = password_hash($varContrasenna_EmpleadoNuevo, PASSWORD_DEFAULT);
+            /* Encriptado de contraseña Fin */
            
             $sql = "INSERT INTO empleado VALUES (".$varIdEmpleado_EmpleadoNuevo.",".
                                                    $varCedula_EmpleadoNuevo.",'".
@@ -118,7 +121,7 @@
                                                    $varCorreoElectronico_EmpleadoNuevo."',".
                                                    $varRol_EmpleadoNuevo.",'".
                                                    $varIdusuario_EmpleadoNuevo."','".
-                                                   $varContrasenna_EmpleadoNuevo."',".
+                                                   $varContrasenna_Encriptada."',".
                                                    $varJefe_EmpleadoNuevo.",". 
                                                    $varEstado_EmpleadoNuevo.");";
             $agregarNuevoEmpleado = $this -> obj_conexion->query($sql);
