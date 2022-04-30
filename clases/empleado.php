@@ -190,5 +190,13 @@
 
             $this -> obj_conexion -> query($sql);
         }
+
+        public function ActualizarContrasenna($idUsuario, $contraEncriptada)
+        {
+            $sql = "UPDATE empleado SET Contrasenna = '".$contraEncriptada."' 
+                    WHERE IdUsuario = '".$idUsuario."';";
+
+            return $this -> obj_conexion -> query($sql);
+        }
     }
 ?>

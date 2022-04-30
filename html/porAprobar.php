@@ -17,9 +17,7 @@
 </head>
 <body>
     <nav>
-        <div id="imagenUsuario">
-            <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
-        </div>
+        <br><br><br>
         <p>Bienvenido</p>
         <?php
             $sql = "SELECT CONCAT(Nombre, ' ', Apellido_1, ' ', Apellido_2) AS Employee FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
@@ -34,6 +32,8 @@
             $resultadoConsultaRol = $conexion -> query($consultaRol);
 
             $arrayRol = $resultadoConsultaRol -> fetch_assoc();
+
+            echo '<br><br><br>';
 
             $_SESSION["RolUsuario"] = $arrayRol["Rol"];
 
@@ -236,8 +236,8 @@
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_ImagenProducto_Cerrar()">&times;</span>
                 <h2 class="h1">Imagen</h2>
-                <div id="espacioParaImagen">
-                    <p>Párrafo de muestra</p>
+                <div id="espacioParaImagen" style="text-align: center">
+                    <img id="imagenAMostrar" height="600px" width ="600px">
                 </div>
             </div>
         </div>

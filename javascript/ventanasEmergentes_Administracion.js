@@ -78,10 +78,17 @@ function emergente_AgregarEmpleado_Confirmacion_Abrir(){
             alert("La cédula debe ser un valor numérico.");
             return;
         }
-        if(!Number.isInteger(Number.parseInt(document.getElementById('cedula').value))){
-            alert("La cédula debe ser un valor numérico.");
+        
+        if(Number.parseInt(document.getElementById('cedula').value) < 0){
+            alert("La cédula no puede ser un valor negativo");
             return;
         }
+        
+        if(Number.parseInt(document.getElementById('cedula').value) === 0){
+            alert("La cédula no puede cero.");
+            return;
+        }
+
         if (document.getElementById('cedula').value.length < 9){
             alert("La cédula ingresada es menor a nueve caracteres.");
                 return;
@@ -107,6 +114,13 @@ function emergente_AgregarEmpleado_Confirmacion_Abrir(){
         /*Validación del correo electrónico*/
         if(document.getElementById('email').value.length > 50){
             alert("El correo electrónico excede los 50 caracteres.");
+            return;
+        }
+
+        var regexCorreo = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        if (!regexCorreo.test(document.getElementById('email').value))
+        {
+            alert("El correo debe tener un formato apropiado.");
             return;
         }
         /*Validación del rol*/

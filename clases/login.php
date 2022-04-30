@@ -15,7 +15,7 @@
             $resultado = $this-> conexion -> query($sql);
             $arrayResultado = $resultado -> fetch_assoc();
 
-            if ($usuario == $arrayResultado["IdUsuario"] && $contra == $arrayResultado["Contrasenna"])
+            if ($usuario == $arrayResultado["IdUsuario"] && password_verify($contra,$arrayResultado["Contrasenna"]))
             {
                 if ($arrayResultado["Estado"]==0)
                 {

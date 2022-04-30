@@ -7,41 +7,45 @@ function validacionRequisicion()
     var costoCampo = document.getElementById('costo');
     var detalleCampo = document.getElementById('detalle');
 
-
-    if (nombreProductoCampo.value==""||
-        costoCampo.value=="")
+    if(nombreProductoCampo.value==""||
+    costoCampo.value=="")
     {
         alert("Debe llenar todos los campos obligatorios (Nombre del producto y costo aproximado)");
-    } else 
-    {
-        if (Number.isNaN(Number.parseFloat(costoCampo.value))){
-            alert("El costo aproximado debe ser un valor numérico.");
-            return;
-        }
-
-        if (costoCampo.value.length > 9){
-            alert("El costo aproximado no puede exceder los nueve dígitos (máximo 100,000,000).");
-            return;
-        }
-
-        if (Number.parseFloat(costoCampo.value) > 100000000){
-            alert("El costo aproximado no puede exceder cien millones");
-            return;
-        }
-
-        if (Number.parseFloat(costoCampo.value) < 0){
-            alert("El costo no puede ser un número negativo.");
-            return;
-        }
-
-        if (nombreProductoCampo.value.length > 50){
-            alert("El largo del nombre del producto no puede exceder los 50 caracteres.");
-            return;
-        }
-
-        var form = document.getElementById('formularioCreacionRequisicion'); 
-        form.submit();
+        return;
     }
+
+    if (Number.isNaN(Number.parseFloat(costoCampo.value))){
+        alert("El costo aproximado debe ser un valor numérico.");
+        return;
+    }
+
+    if (costoCampo.value.length > 9){
+        alert("El costo aproximado no puede exceder los nueve dígitos (máximo 100,000,000).");
+        return;
+    }
+
+    if (Number.parseFloat(costoCampo.value)==0){
+        alert("El costo aproximado no puede ser cero.");
+        return;
+    }
+
+    if (Number.parseFloat(costoCampo.value) > 100000000){
+        alert("El costo aproximado no puede exceder cien millones");
+        return;
+    }
+
+    if (Number.parseFloat(costoCampo.value) < 0){
+        alert("El costo no puede ser un número negativo.");
+        return;
+    }
+
+    if (nombreProductoCampo.value.length > 50){
+        alert("El largo del nombre del producto no puede exceder los 50 caracteres.");
+        return;
+    }
+
+    var form = document.getElementById('formularioCreacionRequisicion'); 
+    form.submit();
 }
 
 function emergente_RealizarSolicitud_Confirmacion_Abrir(){

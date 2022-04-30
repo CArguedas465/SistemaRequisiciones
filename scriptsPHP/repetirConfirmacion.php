@@ -31,11 +31,11 @@
 
     if ($tipoRecordatorio=="Enviadas")
     {
-        $mensaje = "Estimado jefe aprobador ".$nombreEncargado." ".$apellido1Encargado.", \n\nPor este medio se le comunica que el empleado #".$solicitanteDeRequisicion." se encuentra en espera de la resolución para la requisición #".$requisicionARecordar.". Favor acceder al sistema y revisar la solicitud a la mayor brevedad posible.";
+        $mensaje = "Estimado jefe aprobador ".$nombreEncargado." ".$apellido1Encargado.", \n\nPor este medio se le comunica que el empleado #".$solicitanteDeRequisicion." se encuentra en espera de la resolución para la requisición #".$requisicionARecordar.". Favor acceder al sistema y revisar la solicitud a la mayor brevedad posible. Si quisiera acceder directamente al sistema para revisar el estado y detalles, <a href=\"http://localhost/SistemaRequisiciones/html/login.html\">hacer click aquí<a/>";
     } 
     else
     {
-        $mensaje = "Estimado aprobador financiero ".$nombreEncargado." ".$apellido1Encargado.", \n\nPor este medio se le comunica que el empleado #".$solicitanteDeRequisicion." se encuentra en espera de la resolución para la requisición #".$requisicionARecordar.". Favor acceder al sistema y revisar la solicitud a la mayor brevedad posible.";
+        $mensaje = "Estimado aprobador financiero ".$nombreEncargado." ".$apellido1Encargado.", \n\nPor este medio se le comunica que el empleado #".$solicitanteDeRequisicion." se encuentra en espera de la resolución para la requisición #".$requisicionARecordar.". Favor acceder al sistema y revisar la solicitud a la mayor brevedad posible. Si quisiera acceder directamente al sistema para revisar el estado y detalles, <a href=\"http://localhost/SistemaRequisiciones/html/login.html\">hacer click aquí<a/>";
     }
 
     /*Formateo del correo*/

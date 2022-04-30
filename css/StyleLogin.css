@@ -57,8 +57,6 @@ h1 {
 #ingresar:hover{
     background-color: #aed4dd;
     padding: 10px;
-    border: 1px solid;
-    border-color: #012e33;
 }
 
 #Login_Ingresar {
@@ -87,7 +85,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.Login_Botones_Inferior input[type = "button"], .Login_Botones_Inferior input[type = "reset"]{
+.Login_Botones_Inferior input[type = "button"], .Login_Botones_Inferior input[type = "reset"], #Boton_Login_RecuperarContrasenia{
     border: none;
     letter-spacing: 2px;
     text-transform: uppercase;

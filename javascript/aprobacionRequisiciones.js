@@ -114,6 +114,11 @@ function emergente_DenegarRequisicion_ConfirmacionFinal_Cerrar(){
 }
 
 function emergente_ImagenProducto_Abrir(){
+
+    var imagen = tabla.rows.item(rIndex).cells.item(5).innerHTML;
+
+    document.getElementById('espacioParaImagen').innerHTML = imagen.replace('<img height="100px" width="100px"', '<img height="600px" width="600px"');
+
     var modal = document.getElementById('modalImagenRequisicion');
     modal.style.display = 'block';
 }

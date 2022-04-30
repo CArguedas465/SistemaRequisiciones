@@ -17,9 +17,7 @@
 </head>
 <body>
     <nav>
-        <div id="imagenUsuario">
-            <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
-        </div>
+        <br><br><br>
         <p>Bienvenido</p>
         <?php
             $sql = "SELECT CONCAT(Nombre, ' ', Apellido_1, ' ', Apellido_2) AS Employee FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
@@ -34,6 +32,8 @@
             $resultadoConsultaRol = $conexion -> query($consultaRol);
 
             $arrayRol = $resultadoConsultaRol -> fetch_assoc();
+
+            echo '<br><br><br>';
 
             if($arrayRol["Rol"]=="1"){
                 echo '<a href="paginaPrincipal.php">Página Principal</a>
@@ -72,11 +72,12 @@
             $_SESSION["idusuario"] = $arrayIdUsuario["idempleado"];
         ?>
     </nav>
-    <section>
-        <h1 class="h3">
+    <h1 class="h3">
             Nueva Requisición
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
         </h1>
+    <section  style="padding: 25px">
+        
         
         <h2>Introducir la información requerida</h2>
         <form action="../scriptsPHP/crearRequisicion.php" method="post" enctype="multipart/form-data" id="formularioCreacionRequisicion">
@@ -92,16 +93,17 @@
             ?>
             <br>
             <label for="producto">Nombre del producto a solicitar</label>
-            <input type="text" id="producto" name="producto">
+            <input type="text" id="producto" name="producto" autocomplete="off">
             <label for="costo">Costo aproximado</label>
-            <input type="text" id="costo" name="costo">
+            <input type="text" id="costo" name="costo" autocomplete="off">
+            <br>
             <label for="imagen">Adicionar Imagen</label>
-            <input type="file" id="imagen" name="imagen">
+            <input type="file" id="imagen" name="imagen" autocomplete="off">
             <br>
             <label for="detalle">Detalle</label>
-            <textarea name="detalle" id="detalle" cols="150" rows="10"></textarea>
+            <textarea name="detalle" id="detalle" cols="150" rows="10" autocomplete="off"></textarea>
             <div id="realizarSolicitudBoton">
-                <button class="btn btn-success" onclick="validacionRequisicion()">Realizar Solicitud</button>
+                <input type="button" class="btn btn-success" onclick="validacionRequisicion()" value="Realizar Solicitud"></input>
             </div>
         </form>
         

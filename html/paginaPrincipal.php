@@ -17,9 +17,7 @@
 </head>
 <body id="body">
     <nav style="height: 900px">
-        <div id="imagenUsuario">
-            <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
-        </div>
+        <br><br><br>
         <p>Bienvenido</p>
         <?php
             $sql = "SELECT CONCAT(Nombre, ' ', Apellido_1, ' ', Apellido_2) AS Employee FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
@@ -34,6 +32,8 @@
             $resultadoConsultaRol = $conexion -> query($consultaRol);
 
             $arrayRol = $resultadoConsultaRol -> fetch_assoc();
+
+            echo '<br><br><br>';
 
             if($arrayRol["Rol"]=="1"){
                 echo '<a href="paginaPrincipal.php">Página Principal</a>
