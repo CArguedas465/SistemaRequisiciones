@@ -110,7 +110,9 @@ function emergente_ImagenProducto_Abrir(idTabla, fila, columna){
 
     var espacioImagen = document.getElementById('espacioParaImagen');
 
-    espacioImagen.innerHTML = tabla.rows.item(fila).cells.item(columna).textContent;
+    //alert(tabla.rows.item(fila).cells.item(columna).innerHTML);
+
+    espacioImagen.innerHTML = tabla.rows.item(fila).cells.item(columna).innerHTML.replace('<img height="100px" width="100px"', '<img height="600px" width="600px"');
 
     var modal = document.getElementById('modalImagenPagPrincipal');
     modal.style.display = 'block';

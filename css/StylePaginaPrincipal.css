@@ -51,3 +51,9 @@ textarea{
     float: right;
     width: 150px;
 }
+
+.modal-content
+{
+    width: 90% !important; 
+    margin: 10% auto 10% 6.5%;
+}

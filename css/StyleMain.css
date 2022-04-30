@@ -98,7 +98,7 @@ section{
 /*Estilo específico para el botón de opciones de correo electrónico*/
 #opcionesCorreoElectronico{
     background-color: transparent;
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 15px;
     font-weight: 100;

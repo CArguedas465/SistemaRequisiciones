@@ -17,9 +17,7 @@
 </head>
 <body>
     <nav>
-        <div id="imagenUsuario">
-            <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
-        </div>
+        <br><br><br>
         <p>Bienvenido</p>
         <?php
             $sql = "SELECT CONCAT(Nombre, ' ', Apellido_1, ' ', Apellido_2) AS Employee FROM Empleado WHERE IdUsuario = '".$_SESSION["username"]."';";
@@ -34,6 +32,8 @@
             $resultadoConsultaRol = $conexion -> query($consultaRol);
 
             $arrayRol = $resultadoConsultaRol -> fetch_assoc();
+
+            echo '<br><br><br>';
 
             if($arrayRol["Rol"]=="1"){
                 echo '<a href="paginaPrincipal.php">Página Principal</a>
@@ -72,66 +72,69 @@
             $_SESSION["idusuario"] = $arrayIdUsuario["idempleado"];
         ?>
     </nav>
-    <section>
-        <h1 class="h3">
+    <h1 class="h3">
             Nueva Requisición
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
         </h1>
+    <section  style="padding: 25px">
+        
         
         <h2>Introducir la información requerida</h2>
-        <form>
+        <form action="../scriptsPHP/crearRequisicion.php" method="post" enctype="multipart/form-data" id="formularioCreacionRequisicion">
             <?php 
                 $sql = "SELECT Jefe FROM empleado WHERE Id_Empleado = ".$_SESSION["idusuario"].";";
                 $jefeDirectoResultado = $conexion -> query($sql);
 
                 $arrayJefeDirecto = $jefeDirectoResultado -> fetch_assoc();
-
-                echo '<label for="fecha">Fecha de la solicitud</label><input type="text" id="fecha" name="fecha" value="'.date('Y-m-d').'" readonly disabled>'.
-                '<label for="idempleado">IdEmpleado</label><input type="text" id="idempleado" name="idempleado" value="'.$_SESSION["idusuario"].'" readonly disabled>'.
-                '<label for="jefe">Jefe Directo</label><input type="text" id="jefe" name="jefe" value="'.$arrayJefeDirecto["Jefe"].'" readonly disabled>';
+                date_default_timezone_set("Etc/GMT-6");
+                echo '<label for="fecha">Fecha de la solicitud</label><input type="text" id="fecha" name="fecha" value="'.date('Y-m-d H:m:s').'" readonly>'.
+                '<label for="idempleado">IdEmpleado</label><input type="text" id="idempleado" name="idempleado" value="'.$_SESSION["idusuario"].'" readonly>'.
+                '<label for="jefe">Jefe Directo</label><input type="text" id="jefe" name="jefe" value="'.$arrayJefeDirecto["Jefe"].'" readonly>';
             ?>
             <br>
             <label for="producto">Nombre del producto a solicitar</label>
-            <input type="text" id="producto" name="producto">
+            <input type="text" id="producto" name="producto" autocomplete="off">
             <label for="costo">Costo aproximado</label>
-            <input type="text" id="costo" name="costo">
+            <input type="text" id="costo" name="costo" autocomplete="off">
+            <br>
             <label for="imagen">Adicionar Imagen</label>
-            <input type="file" id="imagen" name="imagen" disabled>
+            <input type="file" id="imagen" name="imagen" autocomplete="off">
             <br>
             <label for="detalle">Detalle</label>
-            <textarea name="detalle" id="detalle" cols="150" rows="10"></textarea>
+            <textarea name="detalle" id="detalle" cols="150" rows="10" autocomplete="off"></textarea>
+            <div id="realizarSolicitudBoton">
+                <input type="button" class="btn btn-success" onclick="validacionRequisicion()" value="Realizar Solicitud"></input>
+            </div>
         </form>
-        <div id="realizarSolicitudBoton">
-            <button class="btn btn-success" onclick="emergente_RealizarSolicitud_Confirmacion_Abrir()">Realizar Solicitud</button>
-        </div>
+        
         
         <!--Ventanas modales-->
 
-        <!--Ventana modal para confirmación de requisición-->
+        <!-- Ventana modal para confirmación de requisición
         <div id="modalEnviarRequisicion_Confirmacion" class="modal">
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()">&times;</span>
                 <h2>Aprobación</h2>
                 <p>¿Seguro que desea crear la requisición con la información introducida?</p>
-                <form action="../scriptsPHP/crearRequisicion.php" method="post">
+                <form action="../scriptsPHP/crearRequisicion.php" method="post" enctype="multipart/form-data">
                     <input style="display: none" type="text" id="CrearRequisicion_FechaSolicitud" name="CrearRequisicion_FechaSolicitud"> 
                     <input style="display: none" type="text" id="CrearRequisicion_EmpleadoCreador" name="CrearRequisicion_EmpleadoCreador"> 
                     <input style="display: none" type="text" id="CrearRequisicion_JefeDirecto" name="CrearRequisicion_JefeDirecto"> 
                     <input style="display: none" type="text" id="CrearRequisicion_NombreProducto" name="CrearRequisicion_NombreProducto"> 
                     <input style="display: none" type="text" id="CrearRequisicion_CostoAproximado" name="CrearRequisicion_CostoAproximado"> 
                     <input style="display: none" type="text" id="CrearRequisicion_DetalleEmpleado" name="CrearRequisicion_DetalleEmpleado"> 
+                    <input style="display: none" type="file" id="CrearRequisicion_Imagen" name="CrearRequisicion_Imagen"> 
                     <input class="btn btn-secondary" type="button" value="Volver" onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()">
                     <input class="btn btn-success" type="submit" value="Aceptar">
                 </form>
-                <!--
                 <div>
                     <button onclick="emergente_RealizarSolicitud_ConfirmacionFinal_Abrir()" class="btn btn-success">Aceptar</button>
                     <button onclick="emergente_RealizarSolicitud_Confirmacion_Cerrar()" class="btn btn-secondary">Volver</button>
-                </div>-->
+                </div>
             </div>
         </div>
 
-        <!--Ventana modal para confirmación de requisición, final-->
+        Ventana modal para confirmación de requisición, final
         <div id="modalEnviarRequisicion_ConfirmacionFinal" class="modal">
             <div class="modal-content">
                 <p>Aprobación</p>
@@ -140,7 +143,7 @@
                     <button onclick="emergente_RealizarSolicitud_ConfirmacionFinal_Cerrar()" class="btn btn-success">Aceptar</button>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <!--Ventana modal para opciones de correo electrónico-->
         <div id="modalCorreo" class="modal">
