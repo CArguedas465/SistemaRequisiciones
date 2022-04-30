@@ -25,16 +25,10 @@ body{
     text-align: center;
 }
 
-#Codigo_Recuperacion{
+#Codigo_Recuperacion, #Boton_Recuperacion, #contrasenia_Nueva{
     border-radius: 10px;
     border: 0.2px solid;
     height: 30px;
     width: 150px;
 }
 
-#Boton_Recuperacion{
-    border-radius: 10px;
-    border: 0.2px solid;
-    height: 30px;
-    width: 150px;
-}
