@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </head>
 <body id="body">
-    <nav>
+    <nav style="height: 900px">
         <div id="imagenUsuario">
             <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
         </div>
@@ -72,7 +72,7 @@
             $_SESSION["idusuario"] = $arrayIdUsuario["idempleado"];
         ?>
     </nav>
-    <section>
+    <section style="height: 900px">
         <h1 class="h3">
             Página Principal
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>

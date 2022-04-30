@@ -85,7 +85,7 @@
                 $jefeDirectoResultado = $conexion -> query($sql);
 
                 $arrayJefeDirecto = $jefeDirectoResultado -> fetch_assoc();
-
+                date_default_timezone_set("Etc/GMT-6");
                 echo '<label for="fecha">Fecha de la solicitud</label><input type="text" id="fecha" name="fecha" value="'.date('Y-m-d H:m:s').'" readonly>'.
                 '<label for="idempleado">IdEmpleado</label><input type="text" id="idempleado" name="idempleado" value="'.$_SESSION["idusuario"].'" readonly>'.
                 '<label for="jefe">Jefe Directo</label><input type="text" id="jefe" name="jefe" value="'.$arrayJefeDirecto["Jefe"].'" readonly>';
