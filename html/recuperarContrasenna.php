@@ -20,16 +20,16 @@
         <form action="../scriptsPHP/recuperarContrasennaCorreo.php" method="post"> 
             <br><br>
             <h4>Ingresar el Usuario<h4>
-            <input type="text" name="Usuario" id="Codigo_Recuperacion">
+            <input type="text" name="Usuario" id="Codigo_Recuperacion" autocomplete="off">
             <br><br>
             <button id="Boton_Recuperacion">Enviar correo</button>
             <br><br>
         </form>
         <form action="../scriptsPHP/recuperarContrasennaCodigo.php" method="post">
             <h4>Ingresar código de recuperación<h4>
-            <input type="text" name="CodigoDeRecuperacion" id="Codigo_Recuperacion">
+            <input type="text" name="CodigoDeRecuperacion" id="Codigo_Recuperacion" autocomplete="off">
             <h4>Ingresar nueva contraseña<h4>
-            <input type="text" name="contraseniaNueva" id="contrasenia_Nueva">
+            <input type="text" name="contraseniaNueva" id="contrasenia_Nueva" autocomplete="off">
             <br><br>
             <button id="Boton_Recuperacion">Recuperar</button>
         </form>
