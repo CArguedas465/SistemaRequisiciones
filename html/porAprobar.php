@@ -112,7 +112,16 @@
                         $requisicion = new requisicion_Nicolas();
                         $resultadoRequisicionesPorAprobar = $requisicion -> GetRequisicionesPorAprobar ($_SESSION["idusuario"]);
                         while ($row = $resultadoRequisicionesPorAprobar -> fetch_assoc()){
-                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Estado"]."</td><td>".$row["Imagen"]."</td><td>".$row["Id_Empleado"]."</td><td>".$row["Detalle"]."</td></tr>";
+                            echo "<tr>
+                                <td>".$row["IdRequisicion"]."</td>
+                                <td>".$row["Fecha_Solicitud"]."</td>
+                                <td>".$row["Producto"]."</td>
+                                <td>".$row["Costo"]."</td>
+                                <td>".$row["Estado"]."</td>
+                                <td><img height=\"100px\" width = \"100px\" src=\"data:image/jpg; base64, ";echo base64_encode($row["Imagen"]); echo "\"></td>
+                                <td>".$row["Id_Empleado"]."</td>
+                                <td>".$row["Detalle"]."</td>
+                            </tr>";
                         }
                     ?>
                 </tbody>
@@ -124,7 +133,7 @@
         <!--Ventana modal de detalle de requisición-->
         
         <div id="modalRequisicion" class="modal">
-            <div class="modal-content">
+            <div class="modal-content" style="margin: 5% auto 10% 17% ">
                 <span id="closeButton" class="closeButton" onclick="emergente_Requisicion_Cerrar()">&times;</span>
                 <h2 id="tituloNumeroRequisicion">Requisición # N/A</h2>
                 <form>
@@ -140,10 +149,10 @@
                     <input type="text" id="imagen" name="imagen" value="Click para ver imagen" onclick="emergente_ImagenProducto_Abrir()" readonly>
                     <br><br>
                     <label for="detalle">Detalle</label>
-                    <textarea cols="150" rows="3" id="detalleEmpleado" name="detalleEmpleado" readonly disabled></textarea>
+                    <textarea cols="130" rows="3" id="detalleEmpleado" name="detalleEmpleado" readonly disabled></textarea>
                     <br><br>
                     <label for="detalle">Notas del aprobador</label>
-                    <textarea cols="150" rows="3" id="detalleAprobador" name="detalleAprobador"></textarea>
+                    <textarea cols="130" rows="3" id="detalleAprobador" name="detalleAprobador"></textarea>
                 </form>
                 
                 <br>

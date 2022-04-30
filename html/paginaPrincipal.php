@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </head>
 <body id="body">
-    <nav>
+    <nav style="height: 900px">
         <div id="imagenUsuario">
             <img src="../imagenes/stockPerson.jpg" height="100px" width="100px">
         </div>
@@ -72,7 +72,7 @@
             $_SESSION["idusuario"] = $arrayIdUsuario["idempleado"];
         ?>
     </nav>
-    <section>
+    <section style="height: 900px">
         <h1 class="h3">
             Página Principal
             <span onclick="emergente_CerrarSesion_Abrir()">Cerrar Sesión</span>
@@ -101,7 +101,15 @@
                         $resultadoRequisicionesEnviadas = $requisicion -> GetRequisicionesEnviadas($_SESSION["idusuario"]);
 
                         while ($row = $resultadoRequisicionesEnviadas->fetch_assoc()){
-                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                            echo "<tr>
+                                    <td>".$row["IdRequisicion"]."</td>
+                                    <td>".$row["Fecha_Solicitud"]."</td>
+                                    <td>".$row["Producto"]."</td>
+                                    <td>".$row["Costo"]."</td>
+                                    <td><img height=\"100px\" width = \"100px\" src=\"data:image/jpg; base64, ";echo base64_encode($row["Imagen"]); echo "\"></td>
+                                    <td>".$row["Detalle"]."</td>
+                                    <td>".$row["AsignadaA"]."</td>
+                                </tr>";
                         }
                     ?>
                     <!--
@@ -164,7 +172,7 @@
                         $resultadoRequisicionesEnRevision = $requisicion -> GetRequisicionesEnRevision($_SESSION["idusuario"]);
 
                         while ($row = $resultadoRequisicionesEnRevision->fetch_assoc()){
-                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td><img height=\"100px\" width = \"100px\" src=\"data:image/jpg; base64, ";echo base64_encode($row["Imagen"]); echo "\"></td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
                         }
                     ?>
                     <!--tr>
@@ -199,7 +207,7 @@
                         $resultadoRequisicionesRechazadas = $requisicion -> GetRequisicionesRechazadas($_SESSION["idusuario"]);
 
                         while ($row = $resultadoRequisicionesRechazadas->fetch_assoc()){
-                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td><img height=\"100px\" width = \"100px\" src=\"data:image/jpg; base64, ";echo base64_encode($row["Imagen"]); echo "\"></td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
                         }
                     ?>
                     <!--tr>
@@ -234,7 +242,15 @@
                         $resultadoRequisicionesAprovadas = $requisicion -> GetRequisicionesAprobadas($_SESSION["idusuario"]);
 
                         while ($row = $resultadoRequisicionesAprovadas->fetch_assoc()){
-                            echo "<tr><td>".$row["IdRequisicion"]."</td><td>".$row["Fecha_Solicitud"]."</td><td>".$row["Producto"]."</td><td>".$row["Costo"]."</td><td>".$row["Imagen"]."</td><td>".$row["Detalle"]."</td><td>".$row["AsignadaA"]."</td></tr>";
+                            echo "<tr>
+                                <td>".$row["IdRequisicion"]."</td>
+                                <td>".$row["Fecha_Solicitud"]."</td>
+                                <td>".$row["Producto"]."</td>
+                                <td>".$row["Costo"]."</td>
+                                <td><img height=\"100px\" width = \"100px\" src=\"data:image/jpg; base64, ";echo base64_encode($row["Imagen"]); echo "\"></td>
+                                <td>".$row["Detalle"]."</td>
+                                <td>".$row["AsignadaA"]."</td>
+                                </tr>";
                         }
                     ?>
                     <!--tr>
@@ -257,8 +273,8 @@
             <div class="modal-content">
                 <span id="closeButton" class="closeButton" onclick="emergente_ImagenProducto_Cerrar()">&times;</span>
                 <h2 class="h1">Imagen</h2>
-                <div id="espacioParaImagen">
-                    <p>Párrafo de muestra</p>
+                <div id="espacioParaImagen" style="text-align: center">
+                    <img id="imagenAMostrar" height="600px" width ="600px">
                 </div>
             </div>
         </div>
@@ -350,7 +366,7 @@
                                                     <td>'.$requi[1].'</td>
                                                     <td>'.$requi[2].'</td>
                                                     <td>'.$requi[3].'</td>
-                                                    <td>'.$requi[4].'</td>
+                                                    <td><img height="100px" width = "100px" src="data:image/jpg; base64, '; echo base64_encode($requi[4]); echo '"></td>
                                                     <td>'.$requi[5].'</td>
                                                     <td>'.$requi[6].'</td>
                                                     <td>'.$requi[7].'</td>
@@ -370,7 +386,7 @@
                                                     <td>'.$requi[1].'</td>
                                                     <td>'.$requi[2].'</td>
                                                     <td>'.$requi[3].'</td>
-                                                    <td>'.$requi[4].'</td>
+                                                    <td><img height="100px" width = "100px" src="data:image/jpg; base64, '; echo base64_encode($requi[4]); echo '"></td>
                                                     <td>'.$requi[5].'</td>
                                                     <td>'.$requi[6].'</td>
                                                     <td>'.$requi[7].'</td>
@@ -394,7 +410,7 @@
                                                 <td>'.$row["Fecha_Solicitud"].'</td>
                                                 <td>'.$row["Producto"].'</td>
                                                 <td>'.$row["Costo"].'</td>
-                                                <td>'.$row["Imagen"].'</td>
+                                                <td><img height="100px" width = "100px" src="data:image/jpg; base64, '; echo base64_encode($row["Imagen"]); echo '"></td>
                                                 <td>'.$row["Detalle"].'</td>
                                                 <td>'.$row["AsignadaA"].'</td>
                                                 <td>'.$row["Estado"].'</td>

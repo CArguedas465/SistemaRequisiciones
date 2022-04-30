@@ -3,23 +3,36 @@
     include '../clases/historial.php';
     include_once '../clases/empleado_Carlos.php';
     require_once '../servidorcorreo/PHPMailerAutoload.php';
+    error_reporting(0);
 
-    $fechaSolicitud = $_POST["CrearRequisicion_FechaSolicitud"];
-    $empleadoCreador = $_POST["CrearRequisicion_EmpleadoCreador"];
-    $jefeDirecto = $_POST["CrearRequisicion_JefeDirecto"];
-    $nombreProducto = $_POST["CrearRequisicion_NombreProducto"];
-    $costoAproximado = $_POST["CrearRequisicion_CostoAproximado"];
-    $detalleEmpleado = $_POST["CrearRequisicion_DetalleEmpleado"];
+    $fechaSolicitud = $_POST["fecha"];
+    $empleadoCreador = $_POST["idempleado"];
+    $jefeDirecto = $_POST["jefe"];
+    $nombreProducto = $_POST["producto"];
+    $costoAproximado = $_POST["costo"];
+    $detalleEmpleado = $_POST["detalle"];
 
+    $imagen = '';
+
+    if ($_FILES["imagen"]["type"]==="")
+    {
+        $imagen = addslashes(file_get_contents('../imagenes/sinimagen.png'));
+    }
+    else
+    {
+        $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+    }
+    
     $requisicion = new requisicion_Nicolas();
-    $mail = new PHPMailer();
+    
 
     $idRequisicion = $requisicion -> GenerarIdRequisicion();
 
     /*Se crea requisición.*/ 
-    $resultadoCreacionRequisicion = $requisicion -> CrearRequisicion($idRequisicion, $fechaSolicitud, $nombreProducto, $costoAproximado, $empleadoCreador, $detalleEmpleado, $jefeDirecto); 
+    $resultadoCreacionRequisicion = $requisicion -> CrearRequisicion($idRequisicion, $fechaSolicitud, $nombreProducto, $costoAproximado, $empleadoCreador, $detalleEmpleado, $jefeDirecto, $imagen); 
     
     /*Se le envía correo al creador de la requisición.*/ 
+    $mail = new PHPMailer();
     $mail -> isSMTP();
     $mail -> SMTPAuth = true; 
     $mail -> SMTPSecure = 'ssl';
@@ -56,16 +69,32 @@
 
     if ($resultadoCreacionRequisicion){
         if ($resultadoCrearEntradaHistorial){
-            echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador".$jefeDirecto." para revisión.</h1><p>Redireccionando a la página de crear requisición...</p>";
-            echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
+            echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador ".$jefeDirecto." para revisión.</h1><p>Redireccionando a la página de crear requisición...</p>";
+            //echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
         } else {
-            echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador".$jefeDirecto." para revisión. No se ha podido introducir un registro en el historial.</h1><p>Redireccionando a la página de crear requisición...</p>";
-            echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
+            echo "<h1>Requisición # ".$idRequisicion." ha sido enviada al jefe aprobador ".$jefeDirecto." para revisión. No se ha podido introducir un registro en el historial.</h1><p>Redireccionando a la página de crear requisición...</p>";
+            //echo "<script>window.setTimeout(function() {window.location.href = '../html/nuevaRequisicion.php';}, 3000);</script>";
         }
     } else {
         echo "<h1>Nueva requisición no ha podido ser procesada. Intentar más tarde. Redireccionando a la página de crear requisición...</p>";
-        echo "<script>window.setTimeout(function() {window.location.href = '../html/porAprobar.php';}, 3000);</script>";
+        //echo "<script>window.setTimeout(function() {window.location.href = '../html/porAprobar.php';}, 3000);</script>";
     }
-
-    
 ?>
+<!-- <?php
+    // include_once '../clases/conexion.php';
+
+    // $conexion = new conexion(); 
+
+    // $obj_conexion = $conexion -> establecerConexion(); 
+
+    // $sql = "SELECT imagen 
+    //         FROM requisicion
+    //         WHERE IdRequisicion = ".$idRequisicion.";";
+
+    // $result = $obj_conexion -> query($sql);
+    // $resultArray = $result -> fetch_assoc();
+?>
+
+<img src="data:image/jpg; base64, <?php //echo base64_encode($resultArray['imagen'])?>"> -->
+
+
