@@ -18,3 +18,23 @@ body{
     height: 500px;
     border-radius: 10px;
 }
+
+.texto_General{
+    font-family: 'Calibri', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+#Codigo_Recuperacion{
+    border-radius: 10px;
+    border: 0.2px solid;
+    height: 30px;
+    width: 150px;
+}
+
+#Boton_Recuperacion{
+    border-radius: 10px;
+    border: 0.2px solid;
+    height: 30px;
+    width: 150px;
+}
