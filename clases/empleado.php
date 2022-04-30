@@ -1,5 +1,5 @@
 <?php
-    include 'conexion.php';
+    include_once 'conexion.php';
     class empleado {
         var $obj_conexion; 
 
@@ -9,7 +9,18 @@
             $this->obj_conexion = $conexion -> establecerConexion();
         }
 
+        public function ExisteIdUsuario($idUsuario)
+        {
+            $sql = "SELECT COUNT(*) As Conteo 
+                    FROM empleado
+                    WHERE IdUsuario = '".$idUsuario."';";
 
+            $resultado = $this -> obj_conexion -> query($sql);
+
+            $existe = $resultado -> fetch_assoc(); 
+
+            return $existe["Conteo"];
+        }
 
         public function GetEmpleadosActivos(){
             $sql = "SELECT Id_Empleado, Cedula, Nombre, Apellido_1, Apellido_2, Correo_Electronico, Rol.NombreRol AS Rol, IdUsuario, Jefe 
@@ -123,7 +134,8 @@
                                                    $varIdusuario_EmpleadoNuevo."','".
                                                    $varContrasenna_Encriptada."',".
                                                    $varJefe_EmpleadoNuevo.",". 
-                                                   $varEstado_EmpleadoNuevo.");";
+                                                   $varEstado_EmpleadoNuevo.",
+                                                   0);";
             $agregarNuevoEmpleado = $this -> obj_conexion->query($sql);
             return $agregarNuevoEmpleado;
         }
@@ -141,6 +153,42 @@
             $ingresoIdUsuario= $this -> obj_conexion->query($sql);
 
             return $ingresoIdUsuario;
+        }
+
+        public function AgregarIntento($idUsuario)
+        {
+            $sql = "UPDATE empleado SET intentos = intentos + 1 WHERE IdUsuario = '".$idUsuario."';";
+
+            return $this -> obj_conexion -> query($sql);
+        }
+
+        public function ReiniciarIntentos($idUsuario)
+        {
+            $sql = "UPDATE empleado SET intentos = 0 WHERE IdUsuario = '".$idUsuario."';";
+
+            return $this -> obj_conexion -> query($sql);
+        }
+
+        public function GetIntentosDeEmpleado($idUsuario)
+        {
+            $sql = "SELECT intentos
+                    FROM empleado 
+                    WHERE IdUsuario = '".$idUsuario."';";
+
+            $resultado = $this -> obj_conexion -> query($sql);
+            $intentosArray = $resultado -> fetch_assoc(); 
+
+            $intentos = $intentosArray["intentos"];
+
+            return $intentos;
+        }
+
+        public function InactivarUsuario($idUsuario)
+        {
+            $sql = "UPDATE empleado SET Estado = 0 
+                    WHERE IdUsuario = '".$idUsuario."';";
+
+            $this -> obj_conexion -> query($sql);
         }
     }
 ?>
