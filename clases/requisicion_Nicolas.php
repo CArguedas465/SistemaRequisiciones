@@ -76,8 +76,9 @@
             }  
         }
 
-        public function CrearRequisicion($idrequisicion, $fecha, $producto, $costo, $idCreador, $detalle, $asignacion){
-            $sql = "INSERT INTO Requisicion VALUES (".$idrequisicion.", '".$fecha."', '".$producto."', ".$costo.", 'Enviada', '***', ".$idCreador.", '".$detalle."', ".$asignacion.");";
+        public function CrearRequisicion($idrequisicion, $fecha, $producto, $costo, $idCreador, $detalle, $asignacion, $imagen){
+            $sql = "INSERT INTO Requisicion VALUES (".$idrequisicion.", '".$fecha."', '".$producto."', ".$costo.", 'Enviada', '".$imagen."', ".$idCreador.", '".$detalle."', ".$asignacion.");";
+
             $resultadoCrearRequisicion = $this->obj_conexion -> query($sql);
 
             return $resultadoCrearRequisicion;
